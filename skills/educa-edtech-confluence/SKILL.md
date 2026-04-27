@@ -1,40 +1,111 @@
 ---
 name: educa-edtech-confluence
-description: "Use this skill whenever Santi (Educa Edtech) asks to create, edit, update or structure pages in Confluence. Triggers: 'crea una página', 'actualiza en Confluence', 'documenta el proceso', 'plantilla de proceso/automatización/APTs/descripción área', 'añade en el wiki', 'sube a Confluence', any request to write documentation for Educa Edtech. Covers all document types in the OPERACIONES space (AA1): processes, automations, APTs, area descriptions, weekly reports. Always follow the naming rules, metadata structure, and templates defined here before creating or editing anything."
+description: "Use this skill whenever Santi (Educa Edtech) asks to create, edit, update, audit, structure or publish pages in Confluence for the OPERACIONES space. Triggers: 'crea una página', 'actualiza en Confluence', 'documenta el proceso', 'plantilla de proceso', 'plantilla de automatización', 'APTs', 'descripción área', 'añade en el wiki', 'sube a Confluence', 'documentación del equipo', 'diagnóstico', 'rediseño', 'Knowledge Core', or any request to write documentation for Educa Edtech. Covers processes, automations, APTs, area descriptions, FAQs, KPIs, risks, reporting, project pages and operational documentation. Always search/read before creating or editing, use the correct template, respect metadata, taxonomy, page state and Jira linkage rules."
 ---
 
-# Confluence · Educa Edtech — Cómo trabajar con el espacio
+# Confluence · Educa Edtech — Cómo trabajar con el espacio OPERACIONES
 
-## Datos de conexión
+Esta skill define cómo trabajar con la documentación del equipo de **Operaciones / Business Operations & AI** en Confluence. Está basada en la documentación interna del espacio **OPERACIONES** y debe usarse antes de crear, editar, reorganizar o revisar cualquier página del equipo.
+
+---
+
+## 1. Datos de conexión
 
 | Campo | Valor |
 |---|---|
 | Sitio | `educaedtech.atlassian.net` |
 | Cloud ID | `7ba28d00-0b5a-4689-81b8-d07ff3c1272e` |
-| Espacio principal | **OPERACIONES** — key `AA1`, spaceId `1574699012` |
+| Espacio principal | **OPERACIONES** |
+| Space key | `AA1` |
+| Space ID | `1574699012` |
+| Homepage ID | `1574699212` |
 
 ---
 
-## Estructura del espacio AA1
+## 2. Principios del área de Operaciones
 
-El espacio está organizado en 6 secciones fijas. Antes de crear una página, identifica en qué sección debe vivir:
+El área de Operaciones es transversal. No actúa como soporte reactivo ni como helpdesk. Su función es asegurar que la organización funcione con orden, coherencia y escalabilidad.
 
-| Sección | Contenido |
+Pilares del área:
+
+1. **Conexión entre estrategia, procesos y tecnología**  
+   Alinear lo que se decide estratégicamente con cómo se ejecuta y con las herramientas que lo soportan.
+
+2. **Estructura y orden del sistema empresarial**  
+   Construir una fuente oficial de información que formalice procesos, decisiones y métricas clave, evitando dependencia de conocimiento implícito de personas concretas.
+
+3. **Eficiencia operativa con mayor peso tecnológico**  
+   Identificar fricciones, duplicidades y dependencias estructurales para transformarlas en procesos más simples, estandarizados y apoyados en tecnología.
+
+---
+
+## 3. Estructura real actual del espacio AA1
+
+Antes de crear una página, identificar en qué carpeta real del árbol debe vivir.
+
+| Carpeta real | Uso recomendado |
+|---|---|
+| **GENERAL** | Bienvenida, instrucciones, onboarding, metodología, accesos, playbook y documentación interna base |
+| **AUTOMATIZACIONES** | Automatizaciones, agentes, quick wins automatizados, procesos ETL, bots y soluciones IA operativas |
+| **DOCUMENTACIÓN** | Knowledge core, trackers documentales y documentación transversal embebida |
+| **PROYECTOS** | Proyectos activos/cerrados, auditorías, CAPMAN, quick wins y organización de iniciativas |
+| **DATA Y REPORTING INTERNO** | KPIs, dashboards, reporting, data trackers y medición interna |
+| **IA** | Estrategia IA, agentes, licencias IA, LibreChat y documentación tecnológica relacionada con IA |
+| **TECNOLOGÍA** | Documentación técnica, sistemas, infraestructura y coordinación tecnológica cuando aplique |
+
+---
+
+## 4. Estructura conceptual del método
+
+La documentación interna también usa una arquitectura conceptual. Si hay conflicto entre el árbol real y la estructura conceptual, priorizar el árbol real para ubicar la página y la estructura conceptual para entender el propósito.
+
+| Sección conceptual | Qué contiene |
 |---|---|
 | 01 · Playbook del Área | Todo lo que define cómo es y cómo funciona el área |
 | 02 · Cómo Trabajamos | Metodología, Jira, accesos y normas operativas |
 | 03 · Medición | KPIs, instrucciones de actualización y reportes mensuales |
 | 04 · Documentación | Todas las plantillas disponibles para documentar |
 | 05 · Proyectos | Fichas de proyectos activos y cerrados |
-| 06 · [Sección adicional] | Si aplica |
+| 06 · Sección adicional | Contenido específico cuando aplique |
 
 ---
 
-## Reglas de nomenclatura de páginas
+## 5. Páginas internas de referencia
 
-El nombre debe ser autónomo y descriptivo. Formato por tipo:
+Consultar estas páginas cuando la tarea lo requiera:
 
-| Tipo de documento | Formato del título |
+| Página | ID | Uso |
+|---|---:|---|
+| Instrucciones Confluence — Operaciones | `1684307979` | Reglas oficiales de creación, nomenclatura, metadatos, etiquetas y mantenimiento |
+| Instrucciones de Jira — Operaciones | `1645772816` | Reglas de Epics, issues, estados, etiquetas y trazabilidad Jira-Confluence |
+| Documentacion Interna | `1576271873` | Índice de plantillas y conocimiento interno |
+| IDs de procesos y automatizaciones | `1692729373` | Control de IDs `PRO-XXX-ÁREA` y `AUT-XXX` |
+| Plantilla documentacion procesos | `1637515274` | Plantilla oficial para procesos operativos |
+| Plantilla automatización | `1638039573` | Plantilla oficial para automatizaciones |
+| Plantilla APTs | `1638268929` | Plantilla oficial para puestos de trabajo |
+| Plantilla descripción área y objetivos | `1637613737` | Plantilla oficial para descripción de áreas |
+| Taxonomía y etiquetas | `1639645195` | Reglas de labels, dominios, seguridad, estado, nivel y anillos |
+
+---
+
+## 6. Regla de oro antes de crear o editar
+
+Antes de crear o modificar una página:
+
+1. Buscar si ya existe contenido similar en el espacio.
+2. Leer la página existente si puede verse afectada.
+3. Identificar la carpeta correcta del árbol real.
+4. Identificar la plantilla oficial aplicable.
+5. Verificar si debe existir tarea, Epic o vínculo en Jira.
+6. No modificar información real sin confirmación explícita del usuario.
+
+---
+
+## 7. Reglas de nomenclatura de páginas
+
+El nombre debe ser autónomo y descriptivo. Una persona debe entender qué contiene la página sin contexto adicional.
+
+| Tipo de documento | Formato recomendado |
 |---|---|
 | Descripción y Objetivos | `[Área] — Descripción y Objetivos` |
 | APTs | `[Área] — APTs` |
@@ -45,67 +116,197 @@ El nombre debe ser autónomo y descriptivo. Formato por tipo:
 | Acta | `Acta — [Tema] — [AAAA-MM-DD]` |
 | Reporte | `Reporte — [Período] — [Área]` |
 
-**Normas generales:**
-- Usar siempre el guión largo `—` como separador (no `-`)
-- Sin abreviaturas salvo el Glosario Corporativo
-- Sin números de versión en el nombre
-- Sin fechas salvo en reportes y actas
+Normas generales:
+
+- Usar siempre el guión largo `—` como separador.
+- No usar abreviaturas salvo las del Glosario Corporativo.
+- No incluir número de versión en el título; la versión va en metadatos.
+- No incluir fechas salvo en reportes y actas.
+- Si hay conflicto entre una guía de nomenclatura y una plantilla oficial vigente, priorizar la plantilla oficial vigente.
 
 ---
 
-## Bloque de metadatos obligatorio
+## 8. Estructura obligatoria de una página
 
-**Toda página debe empezar con este bloque:**
+Toda página operativa debe seguir esta estructura mínima:
 
-```
+1. **Bloque de metadatos** al inicio.
+2. **Párrafo introductorio autónomo**; en Confluence debe prepararse como panel o bloque destacado cuando sea posible.
+3. Secciones con encabezados H2 y H3.
+4. Contenido organizado con tablas cuando facilite la lectura.
+5. Histórico de cambios al final, salvo páginas índice.
+
+---
+
+## 9. Bloque de metadatos obligatorio
+
+Toda página debe empezar con un bloque de metadatos.
+
+Formato general:
+
+```markdown
 > **Comisión:** [Nombre de la comisión]
-> **Área:** [Nombre del área exacto]
+> **Área:** [Nombre del área exacto según Glosario]
 > **Owner:** [Nombre completo / Cargo]
 > **Anillo de seguridad:** [Anillo 1 / 2 / 3 / 4]
 > **Versión:** v1.0
 > **Última actualización:** AAAA-MM-DD
 ```
 
-**Versiones:** menor (v1.1) para cambios de contenido, mayor (v2.0) para reestructuraciones.
+Normas:
+
+| Campo | Norma |
+|---|---|
+| Comisión | Usar nombre exacto, sin abreviaturas propias |
+| Área | Usar nombre exacto según Glosario/Knowledge Core |
+| Owner | Nombre completo y cargo, nunca solo nombre |
+| Anillo | Definido por la política de accesos; si hay duda, consultar al Owner |
+| Versión | `v1.0` inicial; cambio menor `v1.1`; reestructuración `v2.0` |
+| Última actualización | Actualizar siempre que se modifique contenido |
 
 ---
 
-## Sistema de etiquetas (labels)
+## 10. Sistema de etiquetas y taxonomía
+
+### 10.1 Etiquetas obligatorias para procesos y automatizaciones
 
 | Tipo de documento | Etiqueta obligatoria |
 |---|---|
 | Ficha de proceso | `proceso` |
 | Automatización completa | `automatizacion` |
 
-Sin esta etiqueta el documento no se contabiliza en los IDs. Añadir siempre al crear la página.
+Sin estas etiquetas, el documento no se contabiliza correctamente en los IDs de procesos y automatizaciones.
+
+Reglas:
+
+- Añadir la etiqueta en el momento de creación de la página.
+- Mantenerla aunque el documento pase a archivado u obsoleto.
+- Usar exactamente `proceso` o `automatizacion`, sin variantes.
+
+### 10.2 Taxonomía oficial del Knowledge Core
+
+Cuando aplique, usar etiquetas controladas con prefijo. No inventar variantes.
+
+| Dimensión | Prefijo | Ejemplos |
+|---|---|---|
+| Dominio / Equipo | `dom-` | `dom-operaciones`, `dom-finance`, `dom-rrhh`, `dom-transversal` |
+| Seguridad | `sec-` | `sec-publico`, `sec-interno`, `sec-restringido`, `sec-confidencial` |
+| Bloque estructural | `block-` | `block-modelo-operativo`, `block-tecnologia-sistemas`, `block-datos-metricas` |
+| Estado | `status-` | `status-borrador`, `status-en-revision`, `status-aprobado`, `status-obsoleto` |
+| Nivel | `level-` | `level-estrategico`, `level-operativo`, `level-tecnico` |
+| Anillo de seguridad | `ring-` | `ring-1`, `ring-2`, `ring-3`, `ring-4` |
+
+Reglas generales de etiquetas:
+
+- Minúsculas.
+- Sin tildes.
+- Con guiones.
+- Vocabulario controlado.
+- Una única etiqueta `ring-` por documento.
+- La etiqueta `ring-` debe coincidir con las restricciones reales de la página.
 
 ---
 
-## IDs de documentos
+## 11. Estados de documentación
 
-| Tipo | Formato de ID |
-|---|---|
-| Proceso | `PRO-[NNN]-[ÁREA]` ej: `PRO-001-OPS` |
-| Automatización | `AUT-[NNN]` ej: `AUT-001` |
+Al crear o revisar una página:
+
+- Mientras esté en construcción, tratarla como borrador o pendiente de revisión.
+- Cuando esté completa y validada, marcarla como `estado-verificada` si el flujo de Confluence lo permite.
+- Si el cambio es estructural, devolverla a borrador hasta validación del Owner.
+- No marcar una página como verificada si faltan metadatos, etiquetas o histórico de cambios.
 
 ---
 
-## Definición de Owners
+## 12. IDs de documentos
 
-**Owner Funcional** — Responsable del proceso desde el negocio. Valida que el resultado es correcto. Es la persona del área propietaria del proceso, no de Operaciones.
+| Tipo | Formato de ID | Ejemplo |
+|---|---|---|
+| Proceso | `PRO-[NNN]-[ÁREA]` | `PRO-001-OPS` |
+| Automatización | `AUT-[NNN]` | `AUT-001` |
 
-**Owner Técnico** — Responsable técnico de que la automatización funcione. La mantiene y la arregla si falla. Es de Tecnología u Operaciones.
+Antes de asignar un nuevo ID:
+
+1. Consultar la página `IDs de procesos y automatizaciones`.
+2. Verificar que no existe ya una ficha equivalente.
+3. Mantener numeración consecutiva.
+4. No reutilizar IDs antiguos aunque una página esté obsoleta.
+
+---
+
+## 13. Definición de Owners
+
+**Owner Funcional**  
+Responsable del proceso desde el punto de vista del negocio. Sabe para qué sirve la automatización o proceso, qué resultado debe dar y cuándo algo no funciona bien operativamente.
+
+- Es la persona del área propietaria del proceso.
+- No tiene por qué ser de Operaciones.
+- Valida que el resultado responde a la necesidad de negocio.
+
+**Owner Técnico**  
+Responsable de que la automatización funcione técnicamente. Sabe cómo está construida, puede modificarla y resuelve fallos técnicos.
+
+- Suele pertenecer a Tecnología u Operaciones.
+- Mantiene el artefacto técnico.
+- Responde ante fallos de ejecución, integración o infraestructura.
 
 Regla práctica:
-- ¿Resultado incorrecto? → Owner Funcional
-- ¿Fallo técnico? → Owner Técnico
+
+- Resultado incorrecto desde negocio → Owner Funcional.
+- Fallo técnico o no ejecución → Owner Técnico.
 
 ---
 
-## PLANTILLA: Documentación de Procesos
+## 14. Integración Jira-Confluence
 
-Usar para documentar procesos operativos (ficheros tipo `PRO-XXX-ÁREA`).
-**Página de referencia en Confluence:** ID `1637515274`
+El trabajo del equipo conecta documentación en Confluence con ejecución en Jira.
+
+### 14.1 Reglas generales de Jira
+
+- El proyecto de Operaciones se organiza por **Epics**.
+- Cada Epic representa una iniciativa, proyecto o quick win.
+- Existe un Epic especial **TRACKER DOCUMENTACION** para tareas documentales.
+- Todo Epic debe tener etiqueta `tipo-proyecto` o `tipo-quickwin`.
+- Las tareas específicas de proceso o documentación pueden usar `tipo-proceso` o `tipo-documento`.
+- No agrupar varias iniciativas en una misma Epic.
+- No eliminar Epics; si se cancela una iniciativa, moverla a backlog y dejar comentario.
+- Enlazar siempre la página de Confluence en la tarea Jira correspondiente.
+
+### 14.2 Estados relevantes
+
+| Estado | Uso |
+|---|---|
+| `PENDIENTE` | Iniciativa o documento identificado pero no iniciado |
+| `DIAGNOSTICO` | Se observa y documenta el proceso AS-IS; no se propone solución todavía |
+| `REDISEÑO` | Se diseña TO-BE, flujo, reglas de negocio y viabilidad técnica; no se ejecuta todavía |
+| `EN CURSO` | Iniciativa en ejecución |
+| `BLOQUEADO` | Dependencia externa impide avanzar |
+| `TESTEO` | Ejecutado y pendiente de pruebas |
+| `COMPLETADO` | Finalizado, revisado y en producción/publicado |
+
+### 14.3 Cuándo crear o vincular Jira
+
+Si una página documenta un proceso, automatización, diagnóstico, rediseño, proyecto o trabajo accionable:
+
+1. Comprobar si existe Epic o Task relacionada.
+2. Enlazar la página de Confluence en la tarea.
+3. Si no existe y el usuario pide gestionarlo, proponer Epic/Task con título, descripción y criterios de aceptación.
+4. No crear ni modificar issues sin confirmación explícita.
+
+### 14.4 Tecnología
+
+Cuando una iniciativa pasa a Tecnología:
+
+- La Epic suele asignarse a Cristina Bullejos.
+- Las tareas con documentos importantes para Tecnología deben enlazarse a la Epic.
+- Documentos críticos para Tecnología: reglas de negocio, flujos, documentación técnica, requisitos y validación de viabilidad.
+
+---
+
+## 15. PLANTILLA: Documentación de Procesos
+
+Usar para documentar procesos operativos (`PRO-XXX-ÁREA`).
+Página de referencia en Confluence: `1637515274`.
 
 ```markdown
 # Documentación de Procesos — [NOMBRE DEL PROCESO]
@@ -120,7 +321,12 @@ Usar para documentar procesos operativos (ficheros tipo `PRO-XXX-ÁREA`).
 
 ---
 
+[Panel introductorio autónomo: 2-4 frases que expliquen qué es este proceso, qué problema de negocio resuelve y qué valor aporta. Debe entenderse sin contexto previo.]
+
+---
+
 ## 1. Descripción general
+
 [2-4 frases: qué es, qué problema resuelve, qué valor aporta. Autónomo sin contexto.]
 
 ---
@@ -207,26 +413,37 @@ Usar para documentar procesos operativos (ficheros tipo `PRO-XXX-ÁREA`).
 
 ## 9. Riesgos
 
-### Cualitativos
+### Riesgos cualitativos
 | Riesgo | Descripción | Probabilidad | Impacto | Mitigación |
 |---|---|---|---|---|
 
-### Cuantitativos
+### Riesgos cuantitativos
 | Riesgo | Descripción | Probabilidad | Impacto económico | Mitigación |
 |---|---|---|---|---|
 
 ---
 
 ## 10. Aprobación del Proceso
-Observaciones MONTEVIVE: [dejar en blanco hasta revisión]
+
+Las partes negocio y tecnología confirman que han revisado y están de acuerdo con el contenido del documento, la propuesta TO-BE y el alcance acordado.
+
+**Observaciones MONTEVIVE:**
+
+---
+
+## 11. Histórico de Cambios
+
+| Versión | Fecha | Autor | Descripción |
+|---|---|---|---|
+| v1.0 | AAAA-MM-DD | [Nombre] | Creación inicial |
 ```
 
 ---
 
-## PLANTILLA: Automatización
+## 16. PLANTILLA: Automatización
 
-Usar para documentar automatizaciones (ficheros tipo `AUT-XXX`).
-**Página de referencia en Confluence:** ID `1638039573`
+Usar para documentar automatizaciones (`AUT-XXX`).
+Página de referencia en Confluence: `1638039573`.
 
 ```markdown
 # Automatización — [NOMBRE DE LA AUTOMATIZACIÓN]
@@ -239,40 +456,46 @@ Usar para documentar automatizaciones (ficheros tipo `AUT-XXX`).
 > **Versión:** v1.0
 > **Fecha creación:** AAAA-MM-DD
 > **Owner técnico:** [Nombre / Cargo]
-> **Owner funcional:** [Nombre / Cargo]
+> **Owner funcional:** [Nombre / Cargo — responsable del proceso de negocio]
 > **Estado:** [Activa / En desarrollo / Pausada / Deprecada]
 
 ---
 
+[Panel introductorio autónomo: 2-4 frases que expliquen qué hace la automatización, qué problema resuelve y qué valor aporta.]
+
+---
+
 ## 1. Descripción General
+
 [2-4 frases autónomas: qué hace, qué problema resuelve, qué valor aporta.]
 
 ---
 
-## 2. Ficha de Identificación
+## 2. Ficha de Identificación del Proceso
 
 | Campo | Detalle |
 |---|---|
 | Nombre del proceso | |
 | Propósito / Objetivo | |
-| Trigger | |
-| Output | |
+| Dónde empieza (Trigger) | |
+| Dónde termina (Output) | |
 | Process Owner | |
 | Ejecutor principal | |
-| Frecuencia | |
+| Frecuencia de ejecución | |
 | Volumen estimado | |
 
 ---
 
 ## 3. Flujo de Datos
 
-ID AUTOMATIZACIÓN: `AUTO-XXX`
+| ID AUTOMATIZACIÓN | AUTO-XXX |
+|---|---|
 
-### Inputs
+### 3.1 Inputs
 | Dato / Campo | Descripción | Sistema origen |
 |---|---|---|
 
-### Outputs
+### 3.2 Outputs
 | Dato / Resultado | Descripción | Sistema destino |
 |---|---|---|
 
@@ -280,27 +503,28 @@ ID AUTOMATIZACIÓN: `AUTO-XXX`
 
 ## 4. Lógica del proceso
 
-### 4.1 Happy path
+### 4.1 Comportamiento esperado (happy path)
 [Flujo paso a paso cuando todo funciona.]
 
 ### 4.2 Diagrama de flujo
-[Enlace]
+[Enlace y captura]
 
 ### 4.3 Reglas funcionales
 - Regla 1
+- Regla 2
 
 ---
 
 ## 5. Sistemas y herramientas
 
-| Sistema | Rol | Tipo de conexión | Responsable |
+| Sistema / Herramienta | Rol en la automatización | Tipo de conexión | Responsable |
 |---|---|---|---|
 
 ---
 
 ## 6. Métricas y KPIs
 
-| KPI | Descripción | Fórmula | Fuente |
+| KPI / Métrica | Descripción | Fórmula de cálculo | Fuente de datos |
 |---|---|---|---|
 
 ---
@@ -313,23 +537,23 @@ ID AUTOMATIZACIÓN: `AUTO-XXX`
 | Owner funcional | |
 | Frecuencia de revisión | |
 | Dependencias críticas | |
-| Última revisión técnica | |
-| Próxima revisión programada | |
+| Última revisión técnica | AAAA-MM-DD |
+| Próxima revisión programada | AAAA-MM-DD |
 
 ---
 
 ## 8. Histórico de Cambios
 
-| Versión | Fecha | Autor | Descripción |
+| Versión | Fecha | Autor | Descripción del cambio |
 |---|---|---|---|
 | v1.0 | AAAA-MM-DD | [Nombre] | Creación inicial |
 ```
 
 ---
 
-## PLANTILLA: APTs
+## 17. PLANTILLA: APTs
 
-Usar para documentar puestos de trabajo. **Página de referencia:** ID `1638268929`
+Usar para documentar puestos de trabajo. Página de referencia: `1638268929`.
 
 ```markdown
 # [NOMBRE DEL ÁREA] — APTs
@@ -338,8 +562,12 @@ Usar para documentar puestos de trabajo. **Página de referencia:** ID `16382689
 > **Área:** [Nombre]
 > **Anillo de seguridad:** [Anillo]
 > **Owner:** [Nombre / Cargo]
-> **Versión:** 1.0
+> **Versión:** v1.0
 > **Última actualización:** AAAA-MM-DD
+
+---
+
+[Panel introductorio autónomo: explicar qué contiene la página y para qué sirve.]
 
 ---
 
@@ -355,20 +583,27 @@ Usar para documentar puestos de trabajo. **Página de referencia:** ID `16382689
 
 ### Responsabilidades principales
 - 
-- 
 
 ### Competencias requeridas
 - 
 
 ### Herramientas que usa
 - 
+
+---
+
+## Histórico de Cambios
+
+| Versión | Fecha | Autor | Descripción |
+|---|---|---|---|
+| v1.0 | AAAA-MM-DD | [Nombre] | Creación inicial |
 ```
 
 ---
 
-## PLANTILLA: Descripción y Objetivos del Área
+## 18. PLANTILLA: Descripción y Objetivos del Área
 
-**Página de referencia:** ID `1637613737`
+Página de referencia: `1637613737`.
 
 ```markdown
 # [NOMBRE DEL ÁREA] — Descripción y Objetivos
@@ -377,8 +612,12 @@ Usar para documentar puestos de trabajo. **Página de referencia:** ID `16382689
 > **Área:** [Nombre]
 > **Anillo de seguridad:** [Anillo]
 > **Owner:** [Nombre / Cargo]
-> **Versión:** 1.0
+> **Versión:** v1.0
 > **Última actualización:** AAAA-MM-DD
+
+---
+
+[Panel introductorio autónomo: explicar qué es el área, qué valor aporta y qué encontrará el lector en la página.]
 
 ---
 
@@ -392,37 +631,85 @@ Usar para documentar puestos de trabajo. **Página de referencia:** ID `16382689
 [Organigrama o descripción de roles]
 
 ## 4. Procesos principales
-[Lista de los procesos clave]
+[Lista de procesos clave]
 
 ## 5. Herramientas
 [Herramientas principales del área]
+
+---
+
+## Histórico de Cambios
+
+| Versión | Fecha | Autor | Descripción |
+|---|---|---|---|
+| v1.0 | AAAA-MM-DD | [Nombre] | Creación inicial |
 ```
 
 ---
 
-## Flujo de trabajo al crear una página
+## 19. Flujo de trabajo al crear una página
 
-1. Comprobar que no existe ya una página con ese contenido (buscar primero)
-2. Identificar la sección del espacio donde debe vivir
-3. Usar la plantilla correspondiente de este skill
-4. Rellenar el bloque de metadatos **antes** de escribir nada más
-5. Añadir las etiquetas obligatorias (`proceso` o `automatizacion` si aplica)
-6. Publicar con estado `current`
-
----
-
-## Flujo de trabajo al actualizar una página
-
-1. Editar el contenido
-2. Actualizar `Última actualización` con la fecha de hoy
-3. Incrementar versión si el cambio es relevante
-4. Añadir línea al Histórico de Cambios describiendo qué cambió
+1. Buscar si ya existe una página equivalente.
+2. Leer la página o plantilla de referencia si existe.
+3. Identificar carpeta real del árbol.
+4. Elegir plantilla oficial.
+5. Crear la página en la ubicación correcta.
+6. Añadir metadatos antes de escribir el contenido.
+7. Añadir panel introductorio autónomo.
+8. Completar secciones H2/H3.
+9. Añadir etiquetas obligatorias y taxonomía aplicable.
+10. Añadir histórico de cambios.
+11. Enlazar con Jira si corresponde.
+12. Pedir confirmación antes de publicar o modificar información real.
+13. Una vez validada, marcar como `estado-verificada` si aplica.
 
 ---
 
-## Herramienta Atlassian disponible
+## 20. Flujo de trabajo al actualizar una página
 
-Para buscar contenido existente usar: `Atlassian Rovo:search`  
-Para leer una página: `Atlassian Rovo:fetch` con su ARI  
-Para crear: `Atlassian Rovo:createConfluencePage` con `cloudId: 7ba28d00-0b5a-4689-81b8-d07ff3c1272e` y `spaceId: 1574699012`  
-Para editar: `Atlassian Rovo:updateConfluencePage`
+1. Leer la versión actual.
+2. Identificar el cambio solicitado.
+3. Mantener estructura, metadatos y estilo existente salvo que el usuario pida reestructurar.
+4. Actualizar `Última actualización` con la fecha de hoy.
+5. Incrementar versión si el cambio es relevante.
+6. Añadir línea en Histórico de Cambios.
+7. Si cambia estructura, alcance, owner, anillo o contenido crítico, tratar como borrador hasta validación del Owner.
+8. No eliminar contenido histórico sin confirmación explícita.
+
+---
+
+## 21. Herramientas disponibles
+
+Usar Atlassian Rovo cuando esté disponible.
+
+| Acción | Herramienta orientativa |
+|---|---|
+| Buscar páginas o contenido | Search Confluence with CQL / Rovo Search Jira and Confluence |
+| Leer una página | Retrieve Confluence page / Fetch content with ARI |
+| Crear página | Create Confluence page |
+| Actualizar página | Update Confluence page |
+| Buscar issues | Search with JQL |
+| Leer issue | Get issue |
+| Crear issue | Create issue |
+| Actualizar issue | Update issue |
+| Transicionar issue | Transition issue |
+
+Regla de seguridad: para crear, actualizar, comentar o transicionar en sistemas reales, pedir confirmación explícita si la acción puede modificar información visible por el equipo.
+
+---
+
+## 22. Checklist de calidad antes de entregar
+
+Antes de entregar una página o propuesta de actualización:
+
+- [ ] ¿Está en la carpeta correcta?
+- [ ] ¿Sigue la plantilla oficial?
+- [ ] ¿Tiene metadatos completos?
+- [ ] ¿Tiene panel introductorio autónomo?
+- [ ] ¿Usa títulos H2/H3 claros?
+- [ ] ¿Tiene labels obligatorias?
+- [ ] ¿Respeta taxonomía `dom-`, `sec-`, `block-`, `status-`, `level-`, `ring-` cuando aplica?
+- [ ] ¿Incluye histórico de cambios?
+- [ ] ¿Enlaza con Jira si corresponde?
+- [ ] ¿Distingue hechos, supuestos y recomendaciones?
+- [ ] ¿Evita inventar owners, fechas, IDs o estados?
