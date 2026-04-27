@@ -11,17 +11,6 @@ Cuando el usuario pida una tarea profesional, elegir la skill más específica d
 3. Plantilla relacionada.
 4. Documentos de conocimiento aplicables.
 
-Ejemplo:
-
-```text
-Analizar un Excel y preparar una página para Confluence
-        ↓
-1. skills/educa-edtech-excel-analysis/SKILL.md si es Excel corporativo de Educa Edtech
-2. skills/educa-edtech-confluence/SKILL.md si es documentación del espacio OPERACIONES de Educa Edtech
-3. templates/excel-analysis-report-template.md
-4. knowledge/company-writing-style.md
-```
-
 ---
 
 ## Skills específicas de Educa Edtech
@@ -31,16 +20,6 @@ Analizar un Excel y preparar una página para Confluence
 **Ruta:** `skills/educa-edtech-confluence/SKILL.md`
 
 Usar cuando Santi pida crear, editar, actualizar o estructurar documentación en Confluence para Educa Edtech, especialmente en el espacio **OPERACIONES** (`AA1`).
-
-Incluye:
-
-- Reglas de nomenclatura de páginas.
-- Bloque obligatorio de metadatos.
-- Estructura del espacio OPERACIONES.
-- Plantillas de procesos, automatizaciones, APTs y descripción de área.
-- Reglas de owners funcionales/técnicos.
-- Uso esperado de Atlassian Rovo para buscar, leer, crear o actualizar páginas.
-- Integración básica con Jira cuando la documentación tenga tareas asociadas.
 
 **Conocimiento relacionado:**
 
@@ -56,19 +35,6 @@ Incluye:
 
 Usar cuando Santi pida crear, revisar, actualizar, organizar, auditar o planificar trabajo en Jira para el proyecto **OPERATIONS** (`AA`).
 
-Incluye:
-
-- Datos del proyecto `AA`.
-- Tipos de issue disponibles.
-- Uso correcto de Epics, tareas, subtareas, peticiones y errores.
-- Reglas de `TRACKER DOCUMENTACIÓN` (`AA-86`) y `BACKLOG PETICIONES` (`AA-94`).
-- Sistema de etiquetas `tipo-proyecto`, `tipo-quickwin`, `tipo-proceso` y `tipo-documento`.
-- Estados operativos: `PENDIENTE`, `DIAGNOSTICO`, `REDISEÑO`, `EN CURSO`, `BLOQUEADO`, `TESTEO` y `COMPLETADO`.
-- Plantillas para Epic, diagnóstico, rediseño, tarea documental, subtarea y comentarios.
-- Reglas de conexión Jira-Confluence.
-- JQLs útiles para consultar el proyecto.
-- Checklist antes de crear, modificar o completar issues.
-
 **Conocimiento relacionado:**
 
 - `skills/educa-edtech-confluence/SKILL.md`
@@ -82,17 +48,6 @@ Incluye:
 **Ruta:** `skills/educa-edtech-excel-analysis/SKILL.md`
 
 Usar cuando Santi pida analizar, auditar, mejorar, crear o modificar Excels corporativos de Educa Edtech, especialmente archivos de Operaciones, scoring, KPIs, dashboards, calculadoras, SharePoint, auditorías o reporting.
-
-Incluye:
-
-- Regla de no sobrescribir archivos originales.
-- Flujo obligatorio de auditoría antes de modificar.
-- Separación entre cambios de formato, técnicos, metodológicos y estructurales.
-- Uso de copia versionada.
-- Hoja `CHANGELOG` obligatoria para cambios.
-- Reglas para fórmulas, validaciones, parámetros, dashboards y modelos de scoring.
-- Criterios para conectar resultados con Confluence y Jira.
-- Checklist de verificación antes de entregar.
 
 **Conocimiento relacionado:**
 
@@ -109,17 +64,6 @@ Incluye:
 
 Usar cuando Santi pida una presentación corporativa, deck, pptx, slides o diapositivas para Educa Edtech Group, Atlax360, AI Tutor, EDUCA LXP u otros contextos internos de la empresa.
 
-Incluye:
-
-- Paleta corporativa.
-- Reglas tipográficas.
-- Motivos visuales recurrentes.
-- Layouts clave de la plantilla.
-- Flujo de trabajo para crear decks on-brand.
-- Scripts auxiliares en `skills/educa-edtech-pptx/scripts/`.
-
-**Importante:** la skill original incluye una plantilla binaria `assets/template.pptx`. La carpeta está preparada en `skills/educa-edtech-pptx/assets/`, pero el archivo `template.pptx` debe subirse manualmente si el conector no permite subir binarios.
-
 **Conocimiento relacionado:**
 
 - `knowledge/company-writing-style.md`
@@ -128,6 +72,24 @@ Incluye:
 ---
 
 ## Skills generales
+
+### Skill Creator
+
+**Ruta:** `skills/skill-creator/SKILL.md`
+
+Usar cuando Santi pida crear, adaptar, mejorar, auditar o evaluar una skill para el repositorio `AI-Skills`, especialmente si quiere convertir un prompt, documentación, procedimiento de trabajo, flujo repetitivo o skill externa de Claude, ChatGPT, LibreChat u OpenClaw en una skill portable basada en GitHub.
+
+**Plantillas relacionadas:**
+
+- `templates/skill-template.md`
+- `templates/skill-evaluation-template.md`
+
+**Conocimiento relacionado:**
+
+- `knowledge/skill-design-principles.md`
+- `knowledge/quality-standards.md`
+
+---
 
 ### Excel Analysis
 
@@ -221,6 +183,7 @@ Usar para diseñar prompts, mejorar instrucciones de sistema, crear prompts para
 
 | Si el usuario pide... | Usar principalmente |
 |---|---|
+| Crear, adaptar o mejorar una skill del repositorio | `skills/skill-creator/SKILL.md` |
 | Crear/actualizar documentación de Educa Edtech en Confluence | `skills/educa-edtech-confluence/SKILL.md` |
 | Crear/actualizar/revisar issues del proyecto Jira OPERATIONS | `skills/educa-edtech-jira/SKILL.md` |
 | Auditar/mejorar un Excel corporativo de Educa Edtech | `skills/educa-edtech-excel-analysis/SKILL.md` |
