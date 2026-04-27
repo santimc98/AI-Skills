@@ -16,7 +16,7 @@ Ejemplo:
 ```text
 Analizar un Excel y preparar una página para Confluence
         ↓
-1. skills/excel-analysis/SKILL.md
+1. skills/educa-edtech-excel-analysis/SKILL.md si es Excel corporativo de Educa Edtech
 2. skills/educa-edtech-confluence/SKILL.md si es documentación del espacio OPERACIONES de Educa Edtech
 3. templates/excel-analysis-report-template.md
 4. knowledge/company-writing-style.md
@@ -77,6 +77,32 @@ Incluye:
 
 ---
 
+### Educa Edtech Excel Analysis
+
+**Ruta:** `skills/educa-edtech-excel-analysis/SKILL.md`
+
+Usar cuando Santi pida analizar, auditar, mejorar, crear o modificar Excels corporativos de Educa Edtech, especialmente archivos de Operaciones, scoring, KPIs, dashboards, calculadoras, SharePoint, auditorías o reporting.
+
+Incluye:
+
+- Regla de no sobrescribir archivos originales.
+- Flujo obligatorio de auditoría antes de modificar.
+- Separación entre cambios de formato, técnicos, metodológicos y estructurales.
+- Uso de copia versionada.
+- Hoja `CHANGELOG` obligatoria para cambios.
+- Reglas para fórmulas, validaciones, parámetros, dashboards y modelos de scoring.
+- Criterios para conectar resultados con Confluence y Jira.
+- Checklist de verificación antes de entregar.
+
+**Conocimiento relacionado:**
+
+- `skills/educa-edtech-confluence/SKILL.md`
+- `skills/educa-edtech-jira/SKILL.md`
+- `knowledge/company-writing-style.md`
+- `knowledge/quality-standards.md`
+
+---
+
 ### Educa Edtech PPTX
 
 **Ruta:** `skills/educa-edtech-pptx/SKILL.md`
@@ -108,6 +134,8 @@ Incluye:
 **Ruta:** `skills/excel-analysis/SKILL.md`
 
 Usar cuando la tarea implique analizar archivos Excel, revisar hojas, fórmulas, columnas o métricas, crear tablas resumen, preparar dashboards, limpiar datos tabulares o calcular costes, consumos, KPIs y comparativas.
+
+Si el archivo es corporativo de Educa Edtech, priorizar `skills/educa-edtech-excel-analysis/SKILL.md`.
 
 **Plantillas relacionadas:**
 
@@ -195,8 +223,9 @@ Usar para diseñar prompts, mejorar instrucciones de sistema, crear prompts para
 |---|---|
 | Crear/actualizar documentación de Educa Edtech en Confluence | `skills/educa-edtech-confluence/SKILL.md` |
 | Crear/actualizar/revisar issues del proyecto Jira OPERATIONS | `skills/educa-edtech-jira/SKILL.md` |
+| Auditar/mejorar un Excel corporativo de Educa Edtech | `skills/educa-edtech-excel-analysis/SKILL.md` |
 | Crear una presentación corporativa Educa/Atlax360/AI Tutor | `skills/educa-edtech-pptx/SKILL.md` |
-| Analizar un Excel | `skills/excel-analysis/SKILL.md` |
+| Analizar un Excel genérico | `skills/excel-analysis/SKILL.md` |
 | Preparar una página de Confluence genérica | `skills/confluence-documentation/SKILL.md` |
 | Crear tareas o historias de usuario genéricas | `skills/jira-backlog-management/SKILL.md` |
 | Organizar documentos empresariales | `skills/sharepoint-document-management/SKILL.md` |
@@ -218,6 +247,7 @@ Usar para diseñar prompts, mejorar instrucciones de sistema, crear prompts para
 7. Si falta información crítica, pedirla; si no es crítica, avanzar con supuestos explícitos.
 8. No sobrescribir documentación o tareas sin validación previa del usuario cuando pueda afectar a sistemas reales.
 9. Para acciones en Jira, Confluence, SharePoint, Outlook o Teams, solicitar confirmación explícita cuando se vaya a modificar información real.
+10. Para Excels corporativos, no sobrescribir el archivo original: trabajar siempre sobre copia versionada.
 
 ---
 
