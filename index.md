@@ -40,10 +40,38 @@ Incluye:
 - Plantillas de procesos, automatizaciones, APTs y descripción de área.
 - Reglas de owners funcionales/técnicos.
 - Uso esperado de Atlassian Rovo para buscar, leer, crear o actualizar páginas.
+- Integración básica con Jira cuando la documentación tenga tareas asociadas.
 
 **Conocimiento relacionado:**
 
 - `knowledge/claude-connectors-configuration.md`
+- `knowledge/company-writing-style.md`
+- `knowledge/quality-standards.md`
+
+---
+
+### Educa Edtech Jira
+
+**Ruta:** `skills/educa-edtech-jira/SKILL.md`
+
+Usar cuando Santi pida crear, revisar, actualizar, organizar, auditar o planificar trabajo en Jira para el proyecto **OPERATIONS** (`AA`).
+
+Incluye:
+
+- Datos del proyecto `AA`.
+- Tipos de issue disponibles.
+- Uso correcto de Epics, tareas, subtareas, peticiones y errores.
+- Reglas de `TRACKER DOCUMENTACIÓN` (`AA-86`) y `BACKLOG PETICIONES` (`AA-94`).
+- Sistema de etiquetas `tipo-proyecto`, `tipo-quickwin`, `tipo-proceso` y `tipo-documento`.
+- Estados operativos: `PENDIENTE`, `DIAGNOSTICO`, `REDISEÑO`, `EN CURSO`, `BLOQUEADO`, `TESTEO` y `COMPLETADO`.
+- Plantillas para Epic, diagnóstico, rediseño, tarea documental, subtarea y comentarios.
+- Reglas de conexión Jira-Confluence.
+- JQLs útiles para consultar el proyecto.
+- Checklist antes de crear, modificar o completar issues.
+
+**Conocimiento relacionado:**
+
+- `skills/educa-edtech-confluence/SKILL.md`
 - `knowledge/company-writing-style.md`
 - `knowledge/quality-standards.md`
 
@@ -107,6 +135,8 @@ Usar para documentación genérica en Confluence cuando no aplique la skill espe
 
 Usar cuando la tarea implique crear, ordenar o mejorar issues de Jira, redactar épicas, historias, tareas, subtareas, criterios de aceptación, JQL o seguimiento del backlog.
 
+Si el trabajo es del proyecto **OPERATIONS** de Educa Edtech (`AA`), priorizar `skills/educa-edtech-jira/SKILL.md`.
+
 **Plantillas relacionadas:**
 
 - `templates/jira-issue-template.md`
@@ -164,10 +194,11 @@ Usar para diseñar prompts, mejorar instrucciones de sistema, crear prompts para
 | Si el usuario pide... | Usar principalmente |
 |---|---|
 | Crear/actualizar documentación de Educa Edtech en Confluence | `skills/educa-edtech-confluence/SKILL.md` |
+| Crear/actualizar/revisar issues del proyecto Jira OPERATIONS | `skills/educa-edtech-jira/SKILL.md` |
 | Crear una presentación corporativa Educa/Atlax360/AI Tutor | `skills/educa-edtech-pptx/SKILL.md` |
 | Analizar un Excel | `skills/excel-analysis/SKILL.md` |
 | Preparar una página de Confluence genérica | `skills/confluence-documentation/SKILL.md` |
-| Crear tareas o historias de usuario | `skills/jira-backlog-management/SKILL.md` |
+| Crear tareas o historias de usuario genéricas | `skills/jira-backlog-management/SKILL.md` |
 | Organizar documentos empresariales | `skills/sharepoint-document-management/SKILL.md` |
 | Preparar informe para dirección | `skills/executive-reporting/SKILL.md` |
 | Resumir una reunión | `skills/meeting-notes/SKILL.md` |
