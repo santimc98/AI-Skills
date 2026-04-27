@@ -159,8 +159,8 @@ Normas:
 |---|---|
 | Comisión | Usar nombre exacto, sin abreviaturas propias |
 | Área | Usar nombre exacto según Glosario/Knowledge Core |
-| Owner | Nombre completo y cargo, nunca solo nombre |
-| Anillo | Definido por la política de accesos; si hay duda, consultar al Owner |
+| Owner | Nombre completo y cargo cuando sea necesario en documentación interna; en repositorio público usar rol funcional si basta |
+| Anillo | Definido por la política de accesos; si hay duda, consultar al owner responsable |
 | Versión | `v1.0` inicial; cambio menor `v1.1`; reestructuración `v2.0` |
 | Última actualización | Actualizar siempre que se modifique contenido |
 
@@ -239,7 +239,7 @@ Antes de asignar un nuevo ID:
 **Owner Funcional**  
 Responsable del proceso desde el punto de vista del negocio. Sabe para qué sirve la automatización o proceso, qué resultado debe dar y cuándo algo no funciona bien operativamente.
 
-- Es la persona del área propietaria del proceso.
+- Es la persona o rol del área propietaria del proceso.
 - No tiene por qué ser de Operaciones.
 - Valida que el resultado responde a la necesidad de negocio.
 
@@ -297,7 +297,7 @@ Si una página documenta un proceso, automatización, diagnóstico, rediseño, p
 
 Cuando una iniciativa pasa a Tecnología:
 
-- La Epic suele asignarse a Cristina Bullejos.
+- La Epic suele asignarse al responsable de Tecnología designado por el equipo.
 - Las tareas con documentos importantes para Tecnología deben enlazarse a la Epic.
 - Documentos críticos para Tecnología: reglas de negocio, flujos, documentación técnica, requisitos y validación de viabilidad.
 
@@ -317,7 +317,7 @@ Página de referencia en Confluence: `1637515274`.
 > **Anillo de seguridad:** [Anillo 1 / 2 / 3 / 4]
 > **Versión:** v1.0
 > **Fecha de creación:** AAAA-MM-DD
-> **Owner:** [Nombre y cargo]
+> **Owner:** [Nombre y cargo, o rol funcional si se documenta en repositorio público]
 
 ---
 
@@ -339,8 +339,8 @@ Página de referencia en Confluence: `1637515274`.
 | Propósito / Objetivo | [¿Para qué existe? ¿Qué problema resuelve?] |
 | Dónde empieza (Trigger) | [Evento que dispara el proceso] |
 | Dónde termina (Output) | [Resultado final] |
-| Process Owner | [Cargo/nombre responsable estratégico] |
-| Ejecutor principal (AS IS) | [Cargo/nombre del que lo ejecuta] |
+| Process Owner | [Cargo/rol responsable estratégico] |
+| Ejecutor principal (AS IS) | [Cargo/rol del que lo ejecuta] |
 | Frecuencia de ejecución | [Puntual / Diaria / Semanal / Mensual / Por evento] |
 | Volumen estimado | [Nº veces por ejecución o período] |
 | Impacto en el negocio | [Impacto de automatizarlo en tiempo, dinero o calidad] |
@@ -435,7 +435,7 @@ Las partes negocio y tecnología confirman que han revisado y están de acuerdo 
 
 | Versión | Fecha | Autor | Descripción |
 |---|---|---|---|
-| v1.0 | AAAA-MM-DD | [Nombre] | Creación inicial |
+| v1.0 | AAAA-MM-DD | [Nombre o rol] | Creación inicial |
 ```
 
 ---
@@ -455,8 +455,8 @@ Página de referencia en Confluence: `1638039573`.
 > **Anillo de seguridad:** [Anillo 1 / 2 / 3 / 4]
 > **Versión:** v1.0
 > **Fecha creación:** AAAA-MM-DD
-> **Owner técnico:** [Nombre / Cargo]
-> **Owner funcional:** [Nombre / Cargo — responsable del proceso de negocio]
+> **Owner técnico:** [Nombre / Cargo, o rol funcional si se documenta en repositorio público]
+> **Owner funcional:** [Nombre / Cargo — responsable del proceso de negocio, o rol funcional si se documenta en repositorio público]
 > **Estado:** [Activa / En desarrollo / Pausada / Deprecada]
 
 ---
@@ -546,7 +546,7 @@ Página de referencia en Confluence: `1638039573`.
 
 | Versión | Fecha | Autor | Descripción del cambio |
 |---|---|---|---|
-| v1.0 | AAAA-MM-DD | [Nombre] | Creación inicial |
+| v1.0 | AAAA-MM-DD | [Nombre o rol] | Creación inicial |
 ```
 
 ---
@@ -561,7 +561,7 @@ Usar para documentar puestos de trabajo. Página de referencia: `1638268929`.
 > **Comisión:** [Nombre]
 > **Área:** [Nombre]
 > **Anillo de seguridad:** [Anillo]
-> **Owner:** [Nombre / Cargo]
+> **Owner:** [Nombre / Cargo, o rol funcional si se documenta en repositorio público]
 > **Versión:** v1.0
 > **Última actualización:** AAAA-MM-DD
 
@@ -596,7 +596,7 @@ Usar para documentar puestos de trabajo. Página de referencia: `1638268929`.
 
 | Versión | Fecha | Autor | Descripción |
 |---|---|---|---|
-| v1.0 | AAAA-MM-DD | [Nombre] | Creación inicial |
+| v1.0 | AAAA-MM-DD | [Nombre o rol] | Creación inicial |
 ```
 
 ---
@@ -611,7 +611,7 @@ Página de referencia: `1637613737`.
 > **Comisión:** [Nombre]
 > **Área:** [Nombre]
 > **Anillo de seguridad:** [Anillo]
-> **Owner:** [Nombre / Cargo]
+> **Owner:** [Nombre / Cargo, o rol funcional si se documenta en repositorio público]
 > **Versión:** v1.0
 > **Última actualización:** AAAA-MM-DD
 
@@ -642,7 +642,7 @@ Página de referencia: `1637613737`.
 
 | Versión | Fecha | Autor | Descripción |
 |---|---|---|---|
-| v1.0 | AAAA-MM-DD | [Nombre] | Creación inicial |
+| v1.0 | AAAA-MM-DD | [Nombre o rol] | Creación inicial |
 ```
 
 ---
@@ -713,3 +713,4 @@ Antes de entregar una página o propuesta de actualización:
 - [ ] ¿Enlaza con Jira si corresponde?
 - [ ] ¿Distingue hechos, supuestos y recomendaciones?
 - [ ] ¿Evita inventar owners, fechas, IDs o estados?
+- [ ] ¿Evita almacenar emails corporativos y nombres personales innecesarios en repositorios públicos?
