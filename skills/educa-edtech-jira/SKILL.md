@@ -235,7 +235,7 @@ Ejemplos:
 
 ```text
 Ficha automatización - PRO-007-STUDENTSUCCESS
-Ficha automatización agente Angel
+Ficha automatización agente
 Documento proceso del agente
 Plantilla automatización scrapeo
 ```
@@ -272,11 +272,7 @@ Reglas:
 
 ## 11. Relación con Tecnología
 
-Una iniciativa pasa a Tecnología cuando la Epic queda asignada a:
-
-```text
-Cristina Bullejos
-```
+Una iniciativa pasa a Tecnología cuando la Epic queda asignada al responsable de Tecnología designado por el equipo.
 
 Antes de pasar trabajo a Tecnología, verificar que están enlazados o descritos:
 
@@ -367,7 +363,7 @@ Toda tarea debe ser entendible sin contexto externo.
 - Indicar entregables concretos.
 - Diferenciar objetivo, contexto y tareas.
 - Si se menciona un Word, Excel, Miro o Confluence, añadir enlace.
-- Si hay dudas, escribirlas en comentarios mencionando a la persona correspondiente.
+- Si hay dudas, escribirlas en comentarios mencionando a la persona correspondiente o, en repositorios públicos, usando su rol funcional.
 
 ---
 
@@ -502,7 +498,7 @@ Formalizar la documentación de [proceso/automatización/agente] en Confluence.
 [Resultado verificable.]
 
 ## Dependencias
-[Persona, documento, acceso o decisión necesaria.]
+[Persona/rol, documento, acceso o decisión necesaria.]
 ```
 
 ### 14.6 Comentario de avance
@@ -567,7 +563,7 @@ Antes de crear una tarea:
 - [ ] ¿Tiene entregables claros?
 - [ ] ¿Tiene criterios de aceptación verificables?
 - [ ] ¿Debe enlazar una página de Confluence?
-- [ ] ¿Debe asignarse a una persona concreta?
+- [ ] ¿Debe asignarse a una persona concreta o basta con rol funcional?
 
 ---
 
@@ -616,7 +612,7 @@ project = AA AND issuetype = Epic AND status = "EN CURSO" ORDER BY updated DESC
 project = AA AND parent = AA-86 ORDER BY updated DESC
 ```
 
-### Trabajo asignado a Santi
+### Trabajo asignado al usuario actual
 
 ```jql
 project = AA AND assignee = currentUser() ORDER BY updated DESC
@@ -725,6 +721,7 @@ Patrones reales:
 - Eliminar Epics canceladas; mover a backlog y explicar en comentario.
 - Crear tareas genéricas sin entregables ni criterios de aceptación.
 - Inventar owners, fechas, enlaces o estados.
+- Guardar emails corporativos o nombres personales innecesarios en repositorios públicos.
 
 ---
 
