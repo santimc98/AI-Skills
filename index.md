@@ -17,205 +17,145 @@ Ejemplo:
 Analizar un Excel y preparar una página para Confluence
         ↓
 1. skills/excel-analysis/SKILL.md
-2. skills/confluence-documentation/SKILL.md
+2. skills/educa-edtech-confluence/SKILL.md si es documentación del espacio OPERACIONES de Educa Edtech
 3. templates/excel-analysis-report-template.md
-4. templates/confluence-page-template.md
-5. knowledge/company-writing-style.md
+4. knowledge/company-writing-style.md
 ```
 
 ---
 
-## Índice de skills
+## Skills específicas de Educa Edtech
 
-### 1. Excel Analysis
+### Educa Edtech Confluence
+
+**Ruta:** `skills/educa-edtech-confluence/SKILL.md`
+
+Usar cuando Santi pida crear, editar, actualizar o estructurar documentación en Confluence para Educa Edtech, especialmente en el espacio **OPERACIONES** (`AA1`).
+
+Incluye:
+
+- Reglas de nomenclatura de páginas.
+- Bloque obligatorio de metadatos.
+- Estructura del espacio OPERACIONES.
+- Plantillas de procesos, automatizaciones, APTs y descripción de área.
+- Reglas de owners funcionales/técnicos.
+- Uso esperado de Atlassian Rovo para buscar, leer, crear o actualizar páginas.
+
+**Conocimiento relacionado:**
+
+- `knowledge/claude-connectors-configuration.md`
+- `knowledge/company-writing-style.md`
+- `knowledge/quality-standards.md`
+
+---
+
+### Educa Edtech PPTX
+
+**Ruta:** `skills/educa-edtech-pptx/SKILL.md`
+
+Usar cuando Santi pida una presentación corporativa, deck, pptx, slides o diapositivas para Educa Edtech Group, Atlax360, AI Tutor, EDUCA LXP u otros contextos internos de la empresa.
+
+Incluye:
+
+- Paleta corporativa.
+- Reglas tipográficas.
+- Motivos visuales recurrentes.
+- Layouts clave de la plantilla.
+- Flujo de trabajo para crear decks on-brand.
+- Scripts auxiliares en `skills/educa-edtech-pptx/scripts/`.
+
+**Importante:** la skill original incluye una plantilla binaria `assets/template.pptx`. La carpeta está preparada en `skills/educa-edtech-pptx/assets/`, pero el archivo `template.pptx` debe subirse manualmente si el conector no permite subir binarios.
+
+**Conocimiento relacionado:**
+
+- `knowledge/company-writing-style.md`
+- `knowledge/quality-standards.md`
+
+---
+
+## Skills generales
+
+### Excel Analysis
 
 **Ruta:** `skills/excel-analysis/SKILL.md`
 
-Usar cuando la tarea implique:
-
-- Analizar archivos Excel.
-- Revisar hojas, tablas, fórmulas, columnas o métricas.
-- Crear tablas resumen.
-- Preparar dashboards o datos para reporting.
-- Limpiar, transformar o explicar datos tabulares.
-- Calcular costes, consumos, uso de tokens, KPIs o comparativas.
+Usar cuando la tarea implique analizar archivos Excel, revisar hojas, fórmulas, columnas o métricas, crear tablas resumen, preparar dashboards, limpiar datos tabulares o calcular costes, consumos, KPIs y comparativas.
 
 **Plantillas relacionadas:**
 
 - `templates/excel-analysis-report-template.md`
 - `templates/executive-summary-template.md`
 
-**Conocimiento relacionado:**
-
-- `knowledge/quality-standards.md`
-- `knowledge/glossary.md`
-
 ---
 
-### 2. Confluence Documentation
+### Confluence Documentation
 
 **Ruta:** `skills/confluence-documentation/SKILL.md`
 
-Usar cuando la tarea implique:
-
-- Crear documentación para Confluence.
-- Redactar páginas técnicas o funcionales.
-- Mejorar estructura, claridad o tono de una página.
-- Convertir notas desordenadas en documentación empresarial.
-- Crear manuales, guías, procedimientos o páginas de decisión.
+Usar para documentación genérica en Confluence cuando no aplique la skill específica de Educa Edtech. Si el trabajo es del espacio OPERACIONES de Educa Edtech, priorizar `skills/educa-edtech-confluence/SKILL.md`.
 
 **Plantillas relacionadas:**
 
 - `templates/confluence-page-template.md`
 - `templates/executive-summary-template.md`
 
-**Conocimiento relacionado:**
-
-- `knowledge/company-writing-style.md`
-- `knowledge/team-processes.md`
-- `knowledge/quality-standards.md`
-
 ---
 
-### 3. Jira Backlog Management
+### Jira Backlog Management
 
 **Ruta:** `skills/jira-backlog-management/SKILL.md`
 
-Usar cuando la tarea implique:
-
-- Crear, ordenar o mejorar issues de Jira.
-- Redactar épicas, historias de usuario, tareas o subtareas.
-- Definir criterios de aceptación.
-- Relacionar documentación de Confluence con trabajo en Jira.
-- Convertir decisiones o reuniones en tareas accionables.
-- Mantener backlog, roadmap o seguimiento de trabajo.
+Usar cuando la tarea implique crear, ordenar o mejorar issues de Jira, redactar épicas, historias, tareas, subtareas, criterios de aceptación, JQL o seguimiento del backlog.
 
 **Plantillas relacionadas:**
 
 - `templates/jira-issue-template.md`
 - `templates/weekly-status-report-template.md`
 
-**Conocimiento relacionado:**
-
-- `knowledge/team-processes.md`
-- `knowledge/quality-standards.md`
-
 ---
 
-### 4. SharePoint Document Management
+### SharePoint Document Management
 
 **Ruta:** `skills/sharepoint-document-management/SKILL.md`
 
-Usar cuando la tarea implique:
-
-- Organizar documentación en SharePoint.
-- Preparar documentos para guardar o compartir.
-- Proponer estructuras de carpetas.
-- Clasificar archivos empresariales.
-- Resumir o transformar documentos para equipos.
-- Crear documentación reutilizable a partir de archivos corporativos.
-
-**Plantillas relacionadas:**
-
-- `templates/confluence-page-template.md`
-- `templates/executive-summary-template.md`
+Usar cuando la tarea implique organizar documentación en SharePoint, preparar documentos, proponer estructuras de carpetas, clasificar archivos o resumir documentación corporativa.
 
 **Conocimiento relacionado:**
 
+- `knowledge/claude-connectors-configuration.md`
 - `knowledge/company-writing-style.md`
-- `knowledge/team-processes.md`
 
 ---
 
-### 5. Executive Reporting
+### Executive Reporting
 
 **Ruta:** `skills/executive-reporting/SKILL.md`
 
-Usar cuando la tarea implique:
-
-- Crear informes ejecutivos.
-- Resumir información para dirección o responsables de área.
-- Preparar comparativas de modelos, costes, proveedores o herramientas.
-- Explicar resultados técnicos con enfoque de negocio.
-- Crear conclusiones, recomendaciones y próximos pasos.
-
-**Plantillas relacionadas:**
-
-- `templates/executive-summary-template.md`
-- `templates/weekly-status-report-template.md`
-
-**Conocimiento relacionado:**
-
-- `knowledge/company-writing-style.md`
-- `knowledge/quality-standards.md`
+Usar para informes ejecutivos, comparativas, recomendaciones para dirección, conclusiones y próximos pasos con enfoque de negocio.
 
 ---
 
-### 6. Meeting Notes
+### Meeting Notes
 
 **Ruta:** `skills/meeting-notes/SKILL.md`
 
-Usar cuando la tarea implique:
-
-- Convertir una reunión en acta.
-- Extraer decisiones, riesgos, acuerdos y próximos pasos.
-- Crear tareas desde notas de reunión.
-- Preparar resumen para Confluence, Jira o correo.
-
-**Plantillas relacionadas:**
-
-- `templates/meeting-notes-template.md`
-- `templates/jira-issue-template.md`
-
-**Conocimiento relacionado:**
-
-- `knowledge/team-processes.md`
+Usar para convertir reuniones en actas, extraer decisiones, riesgos, acuerdos, próximos pasos y tareas derivadas.
 
 ---
 
-### 7. AI Research
+### AI Research
 
 **Ruta:** `skills/ai-research/SKILL.md`
 
-Usar cuando la tarea implique:
-
-- Investigar modelos de IA.
-- Comparar benchmarks.
-- Analizar herramientas como ChatGPT, Claude, Gemini, OpenRouter, n8n, MCP o agentes.
-- Preparar documentación o recomendaciones sobre IA para empresa.
-- Traducir investigación técnica a decisiones prácticas.
-
-**Plantillas relacionadas:**
-
-- `templates/executive-summary-template.md`
-- `templates/confluence-page-template.md`
-
-**Conocimiento relacionado:**
-
-- `knowledge/glossary.md`
-- `knowledge/quality-standards.md`
+Usar para investigar modelos de IA, comparar benchmarks, analizar herramientas como ChatGPT, Claude, Gemini, OpenRouter, n8n, MCP o agentes, y traducir investigación técnica a decisiones prácticas.
 
 ---
 
-### 8. Prompt Engineering
+### Prompt Engineering
 
 **Ruta:** `skills/prompt-engineering/SKILL.md`
 
-Usar cuando la tarea implique:
-
-- Diseñar prompts para agentes.
-- Mejorar instrucciones de sistema.
-- Crear prompts para Claude, ChatGPT, LibreChat, OpenClaw, n8n o agentes propios.
-- Convertir procesos de trabajo en instrucciones reutilizables.
-- Auditar prompts para evitar ambigüedades.
-
-**Plantillas relacionadas:**
-
-- `templates/confluence-page-template.md`
-
-**Conocimiento relacionado:**
-
-- `knowledge/quality-standards.md`
+Usar para diseñar prompts, mejorar instrucciones de sistema, crear prompts para Claude, ChatGPT, LibreChat, OpenClaw, n8n o agentes propios, y auditar instrucciones reutilizables.
 
 ---
 
@@ -223,8 +163,10 @@ Usar cuando la tarea implique:
 
 | Si el usuario pide... | Usar principalmente |
 |---|---|
+| Crear/actualizar documentación de Educa Edtech en Confluence | `skills/educa-edtech-confluence/SKILL.md` |
+| Crear una presentación corporativa Educa/Atlax360/AI Tutor | `skills/educa-edtech-pptx/SKILL.md` |
 | Analizar un Excel | `skills/excel-analysis/SKILL.md` |
-| Preparar una página para Confluence | `skills/confluence-documentation/SKILL.md` |
+| Preparar una página de Confluence genérica | `skills/confluence-documentation/SKILL.md` |
 | Crear tareas o historias de usuario | `skills/jira-backlog-management/SKILL.md` |
 | Organizar documentos empresariales | `skills/sharepoint-document-management/SKILL.md` |
 | Preparar informe para dirección | `skills/executive-reporting/SKILL.md` |
@@ -244,6 +186,7 @@ Usar cuando la tarea implique:
 6. Mantener trazabilidad: indicar de dónde salen los datos, decisiones o conclusiones.
 7. Si falta información crítica, pedirla; si no es crítica, avanzar con supuestos explícitos.
 8. No sobrescribir documentación o tareas sin validación previa del usuario cuando pueda afectar a sistemas reales.
+9. Para acciones en Jira, Confluence, SharePoint, Outlook o Teams, solicitar confirmación explícita cuando se vaya a modificar información real.
 
 ---
 
