@@ -7,11 +7,11 @@ description: "Use this skill whenever Santi asks to analyze, audit, improve, edi
 
 Esta skill define cómo trabajar con archivos Excel corporativos de Educa Edtech, especialmente cuando el archivo forma parte de procesos de **Operaciones**, **auditoría**, **KPIs**, **scoring**, **automatización**, **reporting**, **Jira**, **Confluence** o **SharePoint**.
 
-La regla principal es:
+Regla principal:
 
 ```text
 Nunca modificar directamente el archivo original.
-Trabajar siempre sobre una copia versionada y auditable.
+Trabajar siempre sobre una copia versionada, auditable y visualmente coherente con el Excel original.
 ```
 
 ---
@@ -25,6 +25,7 @@ Garantizar que cualquier análisis o modificación de Excel sea:
 - Comprensible para negocio.
 - Robusto ante nuevas filas o entrevistas.
 - Respetuoso con fórmulas existentes.
+- Visualmente coherente con el archivo original.
 - Compatible con documentación en Confluence.
 - Preparado para seguimiento en Jira si requiere acción del equipo.
 
@@ -37,6 +38,7 @@ Usar esta skill cuando la tarea implique:
 - Revisar o auditar un Excel corporativo.
 - Modificar fórmulas, hojas, tablas, validaciones o dashboards.
 - Crear una versión mejorada de un workbook existente.
+- Añadir nuevas hojas a un Excel ya existente.
 - Analizar un sistema de scoring, KPIs o reporting.
 - Limpiar o transformar datos tabulares para negocio.
 - Preparar información para Confluence o Jira.
@@ -50,7 +52,7 @@ Mejora este Excel sin romper fórmulas.
 Audita el sistema de scoring IMO.
 Crea una versión v2 de la calculadora.
 Añade validaciones y changelog.
-Revisa si las fórmulas están bien planteadas.
+Añade nuevas hojas manteniendo el estilo del Excel original.
 Prepara el Excel para que mi jefa lo revise.
 ```
 
@@ -84,8 +86,9 @@ Antes de modificar:
 1. Leer estructura del workbook.
 2. Identificar hojas, fórmulas y rangos críticos.
 3. Detectar riesgos.
-4. Proponer cambios.
-5. Ejecutar solo los cambios autorizados.
+4. Identificar el estilo visual del archivo original.
+5. Proponer cambios.
+6. Ejecutar solo los cambios autorizados.
 
 ### 3.3 No mezclar metodología con formato
 
@@ -124,6 +127,27 @@ Antes de tocar una fórmula:
 - Cambiarla solo si hay un error, fragilidad o mejora aprobada.
 - Validar valores antes/después.
 
+### 3.6 Preservar estilo, paleta y diseño del workbook original
+
+Cuando se edite un Excel existente, el resultado debe parecer una continuación natural del archivo original, no un añadido externo.
+
+Antes de crear hojas nuevas, tablas nuevas o dashboards nuevos:
+
+1. Inspeccionar las hojas existentes.
+2. Identificar paleta de colores usada en títulos, encabezados, inputs, outputs y dashboards.
+3. Identificar tipografías, tamaños, bordes, rellenos, alineaciones y formatos numéricos.
+4. Reutilizar los mismos estilos en las hojas nuevas.
+5. Si existe una hoja visualmente parecida, duplicarla como base y después sustituir contenido.
+6. No introducir una paleta nueva salvo que el usuario lo pida explícitamente.
+7. Mantener coherencia de nombres, títulos, colores de pestaña, anchos de columna y congelación de paneles.
+
+Regla práctica:
+
+```text
+Nueva hoja = mismo lenguaje visual que las hojas ya existentes.
+Nueva versión = mejora funcional sin romper identidad visual del Excel original.
+```
+
 ---
 
 ## 4. Flujo de trabajo obligatorio
@@ -132,14 +156,16 @@ Antes de tocar una fórmula:
 1. Importar archivo original
 2. Crear diagnóstico estructural
 3. Identificar fórmulas/rangos críticos
-4. Detectar problemas y riesgos
-5. Proponer plan de cambios
-6. Crear copia versionada
-7. Aplicar cambios
-8. Verificar fórmulas y valores clave
-9. Crear/actualizar CHANGELOG
-10. Exportar archivo final
-11. Resumir cambios y recomendaciones
+4. Auditar estilo visual del workbook original
+5. Detectar problemas y riesgos
+6. Proponer plan de cambios
+7. Crear copia versionada
+8. Aplicar cambios respetando fórmulas y estilo original
+9. Verificar fórmulas y valores clave
+10. Verificar coherencia visual de hojas nuevas
+11. Crear/actualizar CHANGELOG
+12. Exportar archivo final
+13. Resumir cambios y recomendaciones
 ```
 
 ---
@@ -160,6 +186,8 @@ Antes de editar, revisar:
 | Valores manuales | ¿Hay outputs hardcodeados donde deberían ser fórmulas? |
 | Errores | ¿Hay `#REF!`, `#VALUE!`, `#DIV/0!`, `#N/A`? |
 | Trazabilidad | ¿Existe hoja de instrucciones y changelog? |
+| Estilo visual | ¿Qué colores, bordes, fuentes y formatos usa el archivo? |
+| Hojas modelo | ¿Hay alguna hoja que pueda duplicarse para mantener estilo? |
 
 ---
 
@@ -343,7 +371,26 @@ Cuando una fórmula sea compleja, añadir explicación en la hoja `Instrucciones
 
 ## 10. Reglas de diseño y formato
 
-### 10.1 Estructura visual
+### 10.1 Prioridad visual: imitar el estilo existente
+
+La primera regla de diseño es **no inventar un estilo nuevo**.
+
+Antes de aplicar colores o formatos nuevos, reutilizar:
+
+- colores de encabezados existentes;
+- colores de pestañas existentes;
+- estilos de tablas existentes;
+- formato de títulos existentes;
+- color de celdas editables;
+- color de celdas calculadas;
+- formatos numéricos;
+- bordes y alineaciones;
+- ancho aproximado de columnas;
+- congelación de paneles si el archivo la usa.
+
+Si el workbook original ya tiene una paleta clara, esa paleta manda sobre cualquier recomendación genérica.
+
+### 10.2 Estructura visual
 
 Cada hoja debe tener:
 
@@ -354,8 +401,11 @@ Cada hoja debe tener:
 - Congelación de paneles si hay muchas filas.
 - Formatos numéricos coherentes.
 - Colores moderados y profesionales.
+- Apariencia coherente con el resto del workbook.
 
-### 10.2 Códigos de color recomendados
+### 10.3 Códigos de color recomendados solo si el original no tiene estilo claro
+
+Si el Excel original no tiene una paleta clara, usar esta guía genérica:
 
 | Color | Uso |
 |---|---|
@@ -365,9 +415,9 @@ Cada hoja debe tener:
 | Rojo suave | Riesgo alto / atención |
 | Gris claro | Campos calculados o no editables |
 
-No abusar de colores. Priorizar legibilidad.
+Si el Excel original sí tiene paleta clara, no usar esta tabla salvo que encaje visualmente.
 
-### 10.3 Dashboards
+### 10.4 Dashboards
 
 Un dashboard debe mostrar:
 
@@ -377,6 +427,7 @@ Un dashboard debe mostrar:
 - Alertas o riesgos.
 - Fecha del snapshot.
 - Nota de interpretación.
+- Estilo visual coherente con dashboards o tablas ya existentes.
 
 ---
 
@@ -394,6 +445,7 @@ Antes de entregar un Excel modificado, comprobar:
 - [ ] Hay hoja `CHANGELOG`.
 - [ ] Las instrucciones reflejan cambios metodológicos.
 - [ ] El archivo se abre como `.xlsx` válido.
+- [ ] Las hojas nuevas respetan paleta, formato y estilo del workbook original.
 - [ ] El resumen final explica cambios, riesgos y próximos pasos.
 
 ---
@@ -448,6 +500,12 @@ Archivo generado: `[nombre_archivo_vX.xlsx]`
 
 - 
 
+## Cambios de formato / estilo
+
+- Paleta original respetada: Sí / No / Parcial
+- Hojas usadas como referencia visual:
+- Diferencias visuales relevantes:
+
 ## Riesgos o limitaciones
 
 - 
@@ -479,6 +537,7 @@ Cuando el archivo sea un sistema de scoring como IMO/IRPI/automatización:
 6. Evitar que estados ambiguos entren en cálculos sin control.
 7. Indicar si un snapshot es manual o calculado automáticamente.
 8. Añadir explicación para lectura ejecutiva.
+9. Las hojas nuevas de scoring, dashboard o parámetros deben mantener el estilo visual del workbook original.
 
 ---
 
@@ -496,7 +555,8 @@ qué fórmulas usa,
 qué supuestos aplica,
 qué limitaciones tiene,
 qué cambió entre versiones,
-y qué decisiones permite tomar.
+qué decisiones permite tomar,
+y por qué visualmente parece parte del mismo workbook.
 ```
 
 Si no responde a esas preguntas, todavía no está listo para usarse como fuente de decisión.
