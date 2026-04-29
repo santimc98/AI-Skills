@@ -13,6 +13,38 @@ Cuando el usuario pida una tarea profesional, elegir la skill más específica d
 
 ---
 
+## Skills específicas de proyectos personales
+
+### n8n Workflow Engineering
+
+**Ruta:** `skills/n8n-workflow-engineering/SKILL.md`
+
+Usar cuando Santi pida auditar, revisar, depurar, editar, documentar o crear workflows de n8n, especialmente si la tarea implica nodos, conexiones, credenciales, expresiones, código, ejecuciones, errores, MCP, agentes IA o automatizaciones en producción.
+
+**Conocimiento relacionado:**
+
+- `skills/linkedin-ai-news-workflow/SKILL.md`
+- `skills/ai-research/SKILL.md`
+- `skills/prompt-engineering/SKILL.md`
+
+---
+
+### LinkedIn AI News Workflow
+
+**Ruta:** `skills/linkedin-ai-news-workflow/SKILL.md`
+
+Usar cuando Santi pida revisar, auditar, depurar, mejorar, documentar o extender el workflow `AI News → LinkedIn (daily, o3-deep-research)`.
+
+Este workflow publica noticias de IA en LinkedIn y requiere controles estrictos para evitar posts truncados, vacíos, incorrectos o sin imagen cuando la imagen sea obligatoria.
+
+**Conocimiento relacionado:**
+
+- `skills/n8n-workflow-engineering/SKILL.md`
+- `skills/ai-research/SKILL.md`
+- `skills/prompt-engineering/SKILL.md`
+
+---
+
 ## Skills específicas de Educa Edtech
 
 ### Educa Edtech Confluence
@@ -183,6 +215,8 @@ Usar para diseñar prompts, mejorar instrucciones de sistema, crear prompts para
 
 | Si el usuario pide... | Usar principalmente |
 |---|---|
+| Auditar, depurar, editar o crear workflows de n8n | `skills/n8n-workflow-engineering/SKILL.md` |
+| Revisar o mejorar el workflow AI News → LinkedIn | `skills/linkedin-ai-news-workflow/SKILL.md` |
 | Crear, adaptar o mejorar una skill del repositorio | `skills/skill-creator/SKILL.md` |
 | Crear/actualizar documentación de Educa Edtech en Confluence | `skills/educa-edtech-confluence/SKILL.md` |
 | Crear/actualizar/revisar issues del proyecto Jira OPERATIONS | `skills/educa-edtech-jira/SKILL.md` |
