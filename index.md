@@ -103,6 +103,23 @@ Usar cuando Santi pida una presentación corporativa, deck, pptx, slides o diapo
 
 ---
 
+### Educa Edtech BPMN & Miro Process Mapping
+
+**Ruta:** `skills/educa-edtech-bpmn-miro-process-mapping/SKILL.md`
+
+Usar cuando Santi o Kevin pidan mapear procesos operativos, automatizaciones, diagnósticos, AS-IS/TO-BE, BPMN, swimlanes o tableros Miro a partir de documentación de Confluence, entrevistas, notas o ejemplos existentes.
+
+**Conocimiento relacionado:**
+
+- `skills/educa-edtech-confluence/SKILL.md`
+- `skills/educa-edtech-jira/SKILL.md`
+- `skills/n8n-workflow-engineering/SKILL.md`
+- `skills/meeting-notes/SKILL.md`
+- `knowledge/company-writing-style.md`
+- `knowledge/quality-standards.md`
+
+---
+
 ## Skills generales
 
 ### Skill Creator
@@ -222,6 +239,7 @@ Usar para diseñar prompts, mejorar instrucciones de sistema, crear prompts para
 | Crear/actualizar/revisar issues del proyecto Jira OPERATIONS | `skills/educa-edtech-jira/SKILL.md` |
 | Auditar/mejorar un Excel corporativo de Educa Edtech | `skills/educa-edtech-excel-analysis/SKILL.md` |
 | Crear una presentación corporativa Educa/Atlax360/AI Tutor | `skills/educa-edtech-pptx/SKILL.md` |
+| Mapear procesos, AS-IS/TO-BE, BPMN o Miro para Educa | `skills/educa-edtech-bpmn-miro-process-mapping/SKILL.md` |
 | Analizar un Excel genérico | `skills/excel-analysis/SKILL.md` |
 | Preparar una página de Confluence genérica | `skills/confluence-documentation/SKILL.md` |
 | Crear tareas o historias de usuario genéricas | `skills/jira-backlog-management/SKILL.md` |
