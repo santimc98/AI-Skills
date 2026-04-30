@@ -55,10 +55,13 @@ Consultar cuando estén disponibles en el entorno corporativo:
 
 | Tipo | Referencia | Uso |
 |---|---|---|
-| Metodología | Confluence `AA1`, página `1702330377`, `Metodología - Mapa de diagnóstico` | Método de diagnóstico por capas: antes, durante y después de entrevistas; mapa de fricción y consolidación por área |
+| Metodología oficial BPMN | Confluence `AA1`, página `1812529177`, `Metodología BPMN` | Reglas obligatorias BPMN, pools, lanes, compuertas, tipos de actividad y colores oficiales |
+| Metodología de diagnóstico | Confluence `AA1`, página `1702330377`, `Metodología - Mapa de diagnóstico` | Método de diagnóstico por capas: antes, durante y después de entrevistas; mapa de fricción y consolidación por área |
 | Ejemplo de proceso | Confluence `AA1`, página `1757184001`, `Documentación de Procesos — Triaje tickets soporte` | Ejemplo completo con AS-IS, TO-BE, reglas funcionales, inputs, outputs, KPIs y riesgos |
 | Ejemplo de automatización | Confluence `AA1`, página `1789886475`, `Automatización facturación artículos` | Referencia de automatización/proceso a contrastar si el contenido está disponible |
 | Estilo Miro | Tableros internos de Miro aportados por Santi/Kevin | Estilo visual, estructura AS-IS/TO-BE, swimlanes y convenciones del equipo |
+
+Regla de prioridad: si hay conflicto entre fuentes, seguir primero la página oficial `Metodología BPMN`, después los ejemplos reales de Miro y después las buenas prácticas BPMN generales.
 
 No copiar información sensible en repositorios públicos. Si se trabaja desde Claude empresarial, usar los enlaces privados aportados por Santi/Kevin como contexto de sesión o archivos internos, no como contenido público reutilizable.
 
@@ -143,35 +146,38 @@ No mezclar ambos en el mismo flujo sin etiquetarlos claramente.
 
 ### 4. Identificar elementos BPMN/Miro
 
-Convertir la información en elementos visuales:
+Convertir la información en elementos visuales siguiendo la metodología oficial BPMN:
 
 | Elemento | Uso |
 |---|---|
-| Evento inicial | Qué dispara el proceso |
-| Evento final | Resultado final del proceso |
-| Tarea manual | Acción humana |
-| Tarea automática | Acción ejecutada por sistema |
-| Tarea semi-automática | Sistema ayuda, persona valida |
-| Gateway / decisión | Punto donde el flujo se bifurca |
-| Swimlane | Actor, área o sistema responsable |
-| Data object | Documento, ticket, email, registro o dato relevante |
+| Evento inicial | Qué dispara el proceso; debe haber uno solo por diagrama |
+| Evento final | Resultado final del proceso; debe tener nombre descriptivo |
+| Human activity | Acción realizada por una persona |
+| Service activity | Acción realizada por un sistema |
+| Call activity | Subproceso reutilizable o bloque que merece detalle propio |
+| Gateway / decisión | Punto donde el flujo se bifurca; debe formularse como pregunta |
+| Pool | Departamento/comisión y sus sistemas |
+| Swimlane | Actor, área o sistema responsable dentro del pool |
+| Sequence flow | Flujo de secuencia dentro del mismo pool |
+| Message flow | Comunicación entre pools distintos |
 | Anotación | Regla, riesgo, fricción o pendiente |
-| Subproceso | Bloque que merece detalle propio |
 
 ### 5. Construir la tabla maestra del proceso
 
 Antes de proponer el tablero, generar una tabla como esta:
 
-| ID | Fase | Paso | Actor / lane | Sistema | Tipo | Entrada | Salida | Regla / condición | Fricción / riesgo |
-|---|---|---|---|---|---|---|---|---|---|
-| P01 | Inicio | | | | Manual / Auto / Semi-auto | | | | |
+| ID | Fase | Paso | Pool | Actor / lane | Sistema | Tipo BPMN | Entrada | Salida | Regla / condición | Fricción / riesgo |
+|---|---|---|---|---|---|---|---|---|---|---|
+| P01 | Inicio | | | | | Human / Service / Call / Gateway / Event | | | | |
 
 Reglas:
 
 - Cada paso debe tener un responsable.
 - Cada decisión debe tener salidas posibles.
+- Cada gateway debe tener rama `Sí` y rama `No` o equivalente.
 - Cada automatización debe indicar sistema ejecutor.
 - Cada punto ambiguo debe marcarse como pendiente.
+- Si el diagrama supera 15 elementos, dividir en subprocesos.
 
 ### 6. Diseñar estructura del tablero Miro
 
@@ -182,14 +188,19 @@ Estructura recomendada:
 ```text
 Título del tablero
 ├── 1. Contexto y objetivo
-├── 2. Leyenda visual
+├── 2. Leyenda visual BPMN
 ├── 3. AS-IS
-│   ├── Swimlanes por actor/sistema
+│   ├── Pool del departamento/comisión
+│   ├── Lanes horizontales por actor/sistema
 │   ├── Flujo principal
+│   ├── Actividades humanas
+│   ├── Actividades de servicio
+│   ├── Gateways
 │   ├── Fricciones marcadas
 │   └── Pendientes de confirmar
 ├── 4. TO-BE
-│   ├── Swimlanes por actor/sistema
+│   ├── Pool del departamento/comisión
+│   ├── Lanes horizontales por actor/sistema
 │   ├── Flujo automatizado/mejorado
 │   ├── Controles humanos
 │   └── Excepciones
@@ -201,26 +212,40 @@ Título del tablero
 
 ### 7. Definir estilo visual
 
-Usar una leyenda consistente:
+Usar la convención oficial de `Metodología BPMN`:
 
-| Tipo de elemento | Convención recomendada |
+| Elemento | Convención visual |
 |---|---|
-| Actor / área | Swimlane horizontal o vertical |
-| Sistema | Swimlane propia o bloque diferenciado |
-| Paso manual | Caja de tarea manual |
-| Paso automático | Caja de tarea automática |
-| Decisión | Rombo / gateway |
-| Fricción | Marcador de alerta o nota destacada |
-| Riesgo | Nota lateral con severidad |
-| Pendiente | Nota `Pendiente de confirmar` |
-| KPI | Bloque específico de medición |
-| Jira/Confluence | Bloque de acciones derivadas |
+| Inicio | Relleno gris claro + borde verde oscuro |
+| Fin proceso completado | Relleno verde + borde negro |
+| Gateway | Relleno amarillo claro + borde negro |
+| Actividad tipo usuario | Relleno anaranjado |
+| Actividad tipo servicio | Relleno turquesa |
+| Call activity | Subproceso / call activity según plantilla BPMN |
+
+Colores oficiales de lanes:
+
+| Lane | Color |
+|---|---|
+| Excel | Verde |
+| Innotutor | Turquesa |
+| Educapay | Amarillo claro |
+| Adyen / Otros | Azul |
+| Zoho | Amarillo oscuro |
+| Jira | Azul oscuro |
+| N8N | Anaranjado claro |
+| Persona | Blanco |
+| CallBell | Amarillo |
+| Campus | Violeta claro |
+| Correo | Gris |
+| 3CX | Violeta |
+| LLM | Anaranjado oscuro |
 
 No depender exclusivamente del color para comunicar significado. Acompañar siempre con etiqueta textual.
 
 ### 8. Generar salida para Miro
 
-Si hay conector/API/MCP de Miro disponible, preparar instrucciones de creación con nombres de frames, shapes, conectores y textos.
+Si hay conector/API/MCP de Miro disponible, preparar instrucciones de creación con nombres de frames, pools, lanes, shapes, conectores y textos.
 
 Si no hay conector, entregar una especificación lista para que una persona la replique.
 
@@ -238,8 +263,9 @@ Comprobar que el mapa respeta la documentación operativa:
 - KPIs.
 - Riesgos.
 - Pendientes.
+- Reglas oficiales BPMN.
 
-Si el mapa contradice la documentación, señalar la contradicción y pedir validación.
+Si el mapa contradice la documentación o la metodología BPMN, señalar la contradicción y pedir validación.
 
 ### 10. Proponer acciones derivadas
 
@@ -278,8 +304,8 @@ Usar este formato por defecto:
 
 ## 4. Tabla maestra del proceso
 
-| ID | Vista | Fase | Paso | Actor / lane | Sistema | Tipo | Entrada | Salida | Regla / condición | Fricción / riesgo |
-|---|---|---|---|---|---|---|---|---|---|---|
+| ID | Vista | Fase | Paso | Pool | Actor / lane | Sistema | Tipo BPMN | Entrada | Salida | Regla / condición | Fricción / riesgo |
+|---|---|---|---|---|---|---|---|---|---|---|---|
 
 ## 5. Especificación del tablero Miro
 
@@ -292,8 +318,8 @@ Usar este formato por defecto:
 
 ## 6. Elementos BPMN/Miro
 
-| ID | Elemento | Texto visible | Tipo | Lane | Conecta con | Notas |
-|---|---|---|---|---|---|---|
+| ID | Frame | Pool | Lane | Elemento BPMN | Texto visible | Color/estilo | Conecta con | Notas |
+|---|---|---|---|---|---|---|---|---|
 
 ## 7. Reglas funcionales y excepciones
 
@@ -320,13 +346,22 @@ Antes de entregar, comprobar:
 - [ ] El mapa tiene objetivo claro.
 - [ ] Se distingue AS-IS de TO-BE.
 - [ ] El trigger y output están identificados.
+- [ ] Existe un solo evento de inicio por diagrama.
+- [ ] Todos los eventos de fin tienen nombre descriptivo.
 - [ ] Cada paso tiene actor o sistema responsable.
-- [ ] Las decisiones tienen condiciones y salidas.
-- [ ] Los pasos manuales, automáticos y semi-automáticos están diferenciados.
+- [ ] Las tareas se nombran como VERBO + OBJETO.
+- [ ] No se incluye el nombre del sistema en la tarea si ya aparece en el lane.
+- [ ] Las decisiones están formuladas como pregunta.
+- [ ] Las decisiones tienen condiciones y salidas `Sí` / `No`.
+- [ ] Cada gateway tiene una rama `No` o camino de error.
+- [ ] Los pasos humanos, de servicio y subprocesos están diferenciados.
 - [ ] Las fricciones aparecen asociadas a pasos concretos.
 - [ ] Los inputs y outputs principales están reflejados.
 - [ ] Las reglas funcionales no se han inventado.
 - [ ] Los pendientes están marcados explícitamente.
+- [ ] No hay elementos huérfanos.
+- [ ] El flujo termina en evento de fin.
+- [ ] Si supera 15 elementos, se propone dividirlo.
 - [ ] La salida puede trasladarse a Miro sin reinterpretación pesada.
 - [ ] Se respetan las reglas de Confluence/Jira de Educa si aplica.
 - [ ] No se incluyen credenciales, emails, tokens ni información sensible innecesaria.
@@ -345,6 +380,9 @@ Antes de entregar, comprobar:
 - Crear demasiados detalles técnicos para una audiencia de negocio.
 - Crear un TO-BE sin reflejar qué fricción resuelve.
 - No marcar dudas o campos pendientes.
+- Crear tareas que no sigan VERBO + OBJETO.
+- Cruzar pools con línea continua en lugar de flujo de mensaje.
+- Dejar elementos sueltos o huérfanos.
 - Asumir que una skill permite editar Miro si no existe conector/API/MCP activo.
 
 ---
@@ -358,11 +396,11 @@ Solo debe crear o modificar tableros reales si existe un conector/API/MCP de Mir
 Sin conector, entregar:
 
 - Frames recomendados.
-- Swimlanes.
+- Pools y swimlanes.
 - Tabla de elementos.
 - Textos de cada nodo.
 - Conexiones entre nodos.
-- Leyenda visual.
+- Leyenda visual BPMN.
 - Pendientes.
 
 Con conector, pedir confirmación antes de crear o modificar un tablero real.
