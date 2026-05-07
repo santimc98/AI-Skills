@@ -3,7 +3,7 @@
 Semana activa:
 
 ```text
-worklog/weekly/2026-W18.md
+worklog/weekly/2026-W19.md
 ```
 
 ## Uso
