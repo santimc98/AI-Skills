@@ -13,6 +13,8 @@ No crear ni actualizar páginas reales sin confirmación explícita de Santi.
 | 2026-04-27 | Guía de seguridad para uso de SharePoint con IA | GENERAL / Cómo trabajamos | Evitar conexiones con permisos demasiado amplios | Propuesta | Incluir recomendación de aprobación IT y alcance limitado |
 | 2026-04-27 | Revisión metodológica v2 del sistema IMO/IRPI/IPA | PROYECTOS / Auditoría 2026 | Formalizar mejoras propuestas al sistema de scoring tras validación de Lorena | Propuesta | No actualizar página oficial hasta visto bueno de Lorena |
 | 2026-04-27 | Estrategia de edición Confluence con asistentes IA | GENERAL / Cómo trabajamos | Establecer cuándo usar comentario, edición puntual, borrador V2 o reemplazo completo | Propuesta | Ya existe `skills/educa-edtech-confluence/EDITING_STRATEGY.md` como base |
+| 2026-05-08 | GitLab corporativo para agentes IA — estructura y gobernanza | OPERACIONES / IA / Infraestructura | Documentar repositorio corporativo, taxonomía, rutas, ramas y reglas de uso | Propuesta | Prioritaria antes de documentar pipeline GitLab → Supabase |
+| 2026-05-08 | Infraestructura MCPs internos — actualización estado GitLab Knowledge MCP | OPERACIONES / IA / Infraestructura | Actualizar estado real de MCP GitLab: despliegue, wrappers REST, autenticación, uso desde n8n y próximos pasos | Propuesta | Esperar enlace exacto de la página existente antes de actualizar |
 
 ## Reglas
 
