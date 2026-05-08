@@ -10,6 +10,8 @@ Registro acumulado de decisiones importantes relacionadas con el uso de asistent
 | 2026-04-27 | Crear skills específicas para Confluence y Jira de Educa Edtech | El equipo tiene reglas propias de documentación y gestión de Jira | Mejora consistencia al trabajar con AA1 y AA | Activa |
 | 2026-04-27 | No conectar SharePoint todavía | Microsoft 365 solicitaba permisos demasiado amplios | Se compartirá documentación manualmente hasta validación de IT | Activa |
 | 2026-04-27 | Crear sistema `AI Worklog` | ChatGPT y Claude necesitan continuidad compartida | Permite registrar sesiones, decisiones y candidatas a Jira/Confluence | Activa |
+| 2026-05-08 | Preparar flujo GitLab MCP → n8n → Supabase con placeholders hasta confirmar credenciales | Evitar registrar secretos y permitir dejar la arquitectura lista para ejecutar | El flujo queda pendiente solo de claves/modelo/endpoints seguros | Activa |
+| 2026-05-08 | Documentar primero GitLab corporativo para agentes antes del pipeline GitLab → Supabase | La gobernanza del repositorio y sus rutas debe estar clara antes de formalizar la ingesta RAG | Confluence priorizará infraestructura GitLab y MCPs; pipeline RAG se documentará tras prueba end-to-end | Activa |
 
 ## Reglas
 
