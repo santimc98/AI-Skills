@@ -14,6 +14,9 @@ No crear issues automáticamente sin confirmación explícita de Santi.
 | 2026-04-27 | Revisar con Lorena la propuesta v2 del sistema IMO/IRPI/IPA | Tarea documental / revisión | AA-86 TRACKER DOCUMENTACIÓN | Alta | Propuesta | Validar separación de madurez, riesgo y oportunidad de automatización antes de actualizar Confluence oficial |
 | 2026-04-27 | Actualizar documentación oficial del sistema IMO tras validación de Lorena | Tarea documental | AA-86 TRACKER DOCUMENTACIÓN | Alta | Propuesta | Elegir estrategia de edición Confluence: edición por secciones o borrador V2 |
 | 2026-04-27 | Revisar si el Excel v2 debe subirse a SharePoint como versión oficial o borrador | Tarea | AA-86 TRACKER DOCUMENTACIÓN | Media | Propuesta | Antes de subir, revisar estilo/paleta y validación de Lorena |
+| 2026-05-08 | Completar credenciales y prueba end-to-end de ingesta RAG del agente de ponencia | Subtarea / Tarea técnica | AA-329 / AA-358 | Alta | Propuesta | Flujo n8n preparado con placeholders; falta confirmar OpenAI embeddings y Supabase service key/URL segura |
+| 2026-05-08 | Documentar infraestructura GitLab para agentes corporativos | Tarea documental | AA-312 o AA-250 | Media | Propuesta | Prioritario antes de documentar formalmente el pipeline GitLab → Supabase |
+| 2026-05-08 | Actualizar página de infraestructura MCP con estado real del GitLab Knowledge MCP desplegado | Tarea documental | AA-312 / AA-374 | Media | Propuesta | Esperar enlaces concretos de Confluence aportados por Santi |
 
 ## Reglas
 
