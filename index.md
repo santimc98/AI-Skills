@@ -23,6 +23,9 @@ Usar cuando Santi pida auditar, revisar, depurar, editar, documentar o crear wor
 
 **Conocimiento relacionado:**
 
+- `knowledge/n8n-node-catalog.md` — catálogo operativo humano de nodos, patrones y estados de verificación.
+- `knowledge/n8n-node-inventory.json` — inventario estructurado de nodos observados en workflows reales e información de instancia.
+- `knowledge/n8n-node-docs-derived-catalog.md` — catálogo documental de nodos n8n basado en documentación pública; no implica disponibilidad en la instancia.
 - `skills/linkedin-ai-news-workflow/SKILL.md`
 - `skills/ai-research/SKILL.md`
 - `skills/prompt-engineering/SKILL.md`
