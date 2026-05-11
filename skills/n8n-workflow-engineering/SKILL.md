@@ -118,6 +118,84 @@ Actualizar este catálogo cuando:
 - un nodo cambie de operaciones, credenciales o comportamiento;
 - se confirme en UI un nodo que antes solo estaba como docs-derived.
 
+## Patrón test → export → producción
+
+Cuando Santi trabaje con el MCP de n8n conectado a su cuenta o instancia de test, asumir por defecto este patrón de entrega:
+
+```text
+n8n test / cuenta de Santi
+↓
+crear versión funcional definitiva sin credenciales reales
+↓
+mantener workflow inactivo/draft
+↓
+usar placeholders, variables de entorno o credenciales dummy claramente nombradas
+↓
+validar estructura, nodos, errores y formato de salida
+↓
+exportar JSON del workflow
+↓
+importar en n8n oficial de Operaciones
+↓
+configurar credenciales reales allí
+↓
+probar controladamente
+↓
+activar solo cuando esté validado
+```
+
+Reglas obligatorias para workflows creados en test:
+
+- Trabajar en la instancia de test de n8n salvo que Santi indique explícitamente lo contrario.
+- No usar credenciales reales en la instancia de test.
+- No pegar secretos en nodos `Set`, `Code`, `HTTP Request`, prompts, notas visuales ni exports JSON.
+- No activar el workflow en test salvo instrucción explícita.
+- No asumir que un workflow de test está listo para producción solo porque se ha creado correctamente.
+- Diseñar el workflow para ser exportable/importable al n8n oficial de Operaciones.
+- Usar nombres claros para variables, credenciales y placeholders, por ejemplo `OPENAI_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `GITLAB_MCP_TOKEN`, `N8N_WEBHOOK_SECRET`.
+- Añadir Sticky Notes que expliquen qué credenciales faltan, dónde se configuran y qué nodos dependen de ellas.
+- Evitar llamadas a sistemas productivos desde test salvo autorización explícita.
+- Si se ejecuta una prueba en test, usar datos mínimos, endpoints de test o payloads controlados.
+
+Entregables esperados cuando se cree un workflow en test:
+
+```text
+1. Workflow creado en instancia de test.
+2. Workflow inactivo.
+3. JSON exportable o confirmación de que puede exportarse desde n8n.
+4. Lista de credenciales/variables pendientes.
+5. Lista de nodos que requieren sustitución de placeholders.
+6. Checklist de importación a n8n oficial.
+7. Checklist de prueba controlada en producción.
+8. Riesgos conocidos antes de activar.
+```
+
+Checklist mínimo de importación a n8n oficial:
+
+```text
+- Importar JSON en n8n oficial de Operaciones.
+- Revisar que todos los nodos existen en la instancia oficial.
+- Configurar credenciales reales desde el gestor de credenciales de n8n.
+- Sustituir variables de entorno/placeholders si aplica.
+- Revisar URLs base, webhooks, dominios y rutas.
+- Validar que el workflow sigue inactivo tras la importación.
+- Ejecutar prueba manual controlada con input mínimo.
+- Revisar logs y outputs de cada nodo crítico.
+- Activar solo después de validación explícita.
+```
+
+Checklist mínimo de prueba controlada:
+
+```text
+- Probar entrada con payload simple.
+- Confirmar que no se usan secretos en claro.
+- Confirmar que no se publican ni envían datos a canales externos no previstos.
+- Confirmar que la salida tiene el formato esperado.
+- Confirmar que los errores devuelven respuesta controlada.
+- Confirmar que los nodos con impacto externo apuntan al entorno correcto.
+- Revisar una ejecución completa antes de activar.
+```
+
 ## Procedimiento paso a paso
 
 ### 1. Health check inicial
@@ -134,6 +212,7 @@ Verificar, según las herramientas disponibles:
 6. Versión de n8n, si está disponible.
 7. Nodos instalados o catálogo de nodos, si el MCP/API lo permite.
 8. Si el MCP no expone catálogo global, usar `n8n-node-inventory.json` como evidencia de workflows y `n8n-node-docs-derived-catalog.md` solo como mapa de candidatos.
+9. Si se está usando instancia de test, confirmar que el workflow quedará exportable y sin credenciales reales.
 
 No modificar nada durante el health check.
 
@@ -164,6 +243,7 @@ Antes de proponer una arquitectura nueva o modificar un flujo existente:
 5. Reservar HTTP Request para APIs o endpoints no cubiertos por nodos nativos confirmados.
 6. Reservar Code para lógica de transformación, validación, hashing, chunking, deduplicación o parsing que no pueda mantenerse bien con nodos visuales.
 7. Documentar la razón si se elige una opción genérica.
+8. Si el workflow se creará en test, comprobar que la selección de nodos también es razonable para la instancia oficial donde se importará.
 
 Plantilla rápida de decisión:
 
@@ -204,6 +284,7 @@ Reglas obligatorias:
 - No ocultar errores críticos con valores por defecto peligrosos.
 - No sustituir un nodo nativo por HTTP Request o Code sin una razón técnica clara.
 - No sustituir por un nodo solo `docs-derived` sin comprobar que existe en la instancia.
+- En instancia de test, no introducir credenciales reales y no dejar secretos en el export.
 
 Antes de cambios peligrosos, explicar brevemente qué se va a tocar y por qué.
 
@@ -219,6 +300,7 @@ Después de cualquier cambio:
 6. Confirmar que no aparecen errores nuevos aguas abajo.
 7. Si hay publicación externa, verificar los controles previos antes de permitir salida.
 8. Verificar que las notas visuales del workflow siguen reflejando la arquitectura real.
+9. Si el workflow se creó en test, confirmar qué falta antes de exportar/importar en producción.
 
 ### 7. Workflows con publicación o impacto externo
 
@@ -295,6 +377,7 @@ Cada workflow debería incluir, cuando aplique:
 - Tablas, endpoints o recursos destino.
 - Reglas de deduplicación, claves únicas o criterios de upsert.
 - Advertencias de seguridad antes de ejecutar acciones externas.
+- Si se crea en test: instrucciones de exportación/importación y credenciales pendientes en producción.
 
 Las notas deben ser operativas, breves y en español. No deben contener tokens, contraseñas, claves API ni secretos reales.
 
@@ -314,6 +397,7 @@ Un diagnóstico o cambio en n8n se considera correcto si:
 - Si se usa HTTP Request o Code, queda justificado por limitación funcional, seguridad, control o mantenibilidad.
 - Si se propone un nodo documentado pero no verificado en instancia, queda indicado como pendiente de comprobación.
 - El workflow queda documentado visualmente con notas en español cuando su complejidad lo justifique.
+- Si se crea en test, queda preparado para exportar/importar sin credenciales reales.
 
 ## Formato de salida esperado
 
@@ -352,6 +436,19 @@ Cuando se proponga la elección de nodos, añadir si aporta valor:
 |---|---|---|---|---|
 ```
 
+Cuando se cree un workflow en instancia de test para posterior importación a producción, añadir:
+
+```markdown
+## Preparación para exportar a producción
+
+| Elemento | Estado | Acción necesaria en n8n oficial |
+|---|---|---|
+| Credenciales | Placeholder / pendiente | ... |
+| Variables de entorno | Placeholder / pendiente | ... |
+| Webhook | Test / pendiente producción | ... |
+| Nodos externos | Pendiente validar | ... |
+```
+
 ## Errores comunes a evitar
 
 - Editar antes de diagnosticar.
@@ -369,6 +466,8 @@ Cuando se proponga la elección de nodos, añadir si aporta valor:
 - Asumir que un nodo `docs-derived` está instalado sin comprobarlo en la instancia.
 - No consultar la versión real de n8n ni los nodos instalados cuando el diseño depende de ello.
 - Dejar sticky notes en inglés o con información genérica poco útil para el equipo.
+- Crear workflows en test con credenciales reales o secretos que después queden en exports.
+- Importar en producción sin revisar credenciales, URLs, webhooks y nodos disponibles.
 
 ## Plantillas relacionadas
 
