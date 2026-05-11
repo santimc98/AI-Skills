@@ -16,7 +16,8 @@ Trabajar con n8n con mentalidad de producción:
 - facilidad de depuración,
 - cambios mínimos,
 - validación posterior,
-- prevención de publicaciones o acciones incorrectas.
+- prevención de publicaciones o acciones incorrectas,
+- uso preferente de nodos nativos antes que soluciones genéricas con Code o HTTP Request.
 
 El objetivo no es solo que el workflow funcione una vez, sino que sea mantenible, observable y seguro ante fallos parciales.
 
@@ -34,6 +35,73 @@ Antes de actuar, recopilar o confirmar solo la información crítica:
 
 Si hay acceso MCP a n8n y la tarea requiere tocar n8n, hacer primero un health check.
 
+## Principio node-first
+
+Antes de proponer un nodo Code o HTTP Request, comprobar si existe un nodo nativo de n8n que cubra la necesidad.
+
+Regla práctica:
+
+1. Preferir nodo nativo oficial o community node ya instalado.
+2. Si el nodo nativo existe, usarlo salvo que falte una operación concreta, haya una limitación conocida o el caso requiera control HTTP específico.
+3. Si se propone HTTP Request o Code, explicar brevemente por qué no se usa un nodo nativo.
+4. No asumir que un nodo no existe solo porque no esté en memoria: verificar en el catálogo de nodos, en la instancia de n8n, en el MCP disponible o pedir a Santi una captura/búsqueda si es necesario.
+
+Ejemplos de preferencia:
+
+- Supabase: preferir nodo Supabase o PostgreSQL cuando cubran la operación; usar HTTP Request solo para endpoints REST/RPC concretos, upserts especiales, headers personalizados o funcionalidades no expuestas por el nodo.
+- GitLab/GitHub: preferir nodos nativos cuando la operación esté cubierta; usar HTTP/MCP cuando se necesite un wrapper interno, lectura restringida, endpoints no soportados o lógica de seguridad propia.
+- OpenAI/embeddings/LLM: preferir nodos nativos de OpenAI o AI nodes disponibles; usar HTTP Request si el modelo, endpoint, payload o proveedor no está soportado por el nodo instalado.
+- Transformaciones simples: preferir Edit Fields/Set, IF, Switch, Merge, Split in Batches/Loop, Aggregate, Item Lists o nodos equivalentes antes que Code.
+- Transformaciones complejas: usar Code solo para lógica determinista que no pueda mantenerse razonablemente con nodos visuales.
+
+## Catálogo actualizado de nodos n8n
+
+Para evitar diseñar workflows con información desactualizada, mantener una fuente de conocimiento viva sobre los nodos disponibles en la instancia real de n8n.
+
+Prioridad de fuentes, de más fiable a menos fiable:
+
+1. Catálogo de nodos de la propia instancia de n8n y versión instalada.
+2. Herramientas MCP/API de n8n que permitan listar node types, credenciales, operaciones o schemas.
+3. Export o inventario interno generado desde la instancia.
+4. Documentación oficial de n8n correspondiente a la versión instalada.
+5. Memoria o conocimiento general del asistente, solo como apoyo.
+
+Cuando sea posible, crear y mantener en el repositorio un archivo de conocimiento como:
+
+```text
+knowledge/n8n-node-catalog.md
+```
+
+o, si se prefiere formato estructurado:
+
+```text
+knowledge/n8n-node-inventory.json
+```
+
+Contenido mínimo recomendado para cada nodo relevante:
+
+```text
+- Nombre visible del nodo.
+- Nombre técnico/type si se conoce.
+- Paquete: core, official, community o custom.
+- Categoría: base de datos, IA, comunicación, transformación, trigger, devops, etc.
+- Operaciones principales.
+- Credenciales necesarias.
+- Casos de uso recomendados.
+- Cuándo preferir este nodo frente a HTTP Request.
+- Cuándo no basta y conviene usar HTTP Request o Code.
+- Versión de n8n donde se ha verificado.
+- Fecha de revisión.
+```
+
+Actualizar este catálogo cuando:
+
+- se actualice la versión de n8n;
+- se instale o elimine un community node;
+- se detecte que existe un nodo nativo que antes no se estaba usando;
+- se cree un workflow con integración nueva;
+- un nodo cambie de operaciones, credenciales o comportamiento.
+
 ## Procedimiento paso a paso
 
 ### 1. Health check inicial
@@ -47,6 +115,8 @@ Verificar, según las herramientas disponibles:
 3. Acceso a ejecuciones.
 4. Permisos suficientes para leer antes de escribir.
 5. Si el workflow está activo o desactivado.
+6. Versión de n8n, si está disponible.
+7. Nodos instalados o catálogo de nodos, si el MCP/API lo permite.
 
 No modificar nada durante el health check.
 
@@ -61,10 +131,31 @@ Antes de aplicar cambios:
 5. Revisar código en nodos Code/Function.
 6. Revisar ejecuciones recientes si el problema viene de una ejecución.
 7. Separar hechos confirmados de hipótesis.
+8. Identificar si un nodo Code o HTTP Request podría sustituirse por un nodo nativo más mantenible.
 
 No editar por intuición sin haber localizado la causa probable.
 
-### 3. Revisión de ejecuciones fallidas
+### 3. Selección de nodos antes de diseñar o modificar
+
+Antes de proponer una arquitectura nueva o modificar un flujo existente:
+
+1. Listar las operaciones necesarias: leer, escribir, buscar, transformar, validar, enviar, esperar, disparar, responder, etc.
+2. Mapear cada operación al nodo nativo más específico disponible.
+3. Reservar HTTP Request para APIs o endpoints no cubiertos por nodos nativos.
+4. Reservar Code para lógica de transformación, validación, hashing, chunking, deduplicación o parsing que no pueda mantenerse bien con nodos visuales.
+5. Documentar la razón si se elige una opción genérica.
+
+Plantilla rápida de decisión:
+
+```text
+Necesidad:
+Nodo nativo considerado:
+Motivo para usarlo / descartarlo:
+Alternativa elegida:
+Riesgo o limitación:
+```
+
+### 4. Revisión de ejecuciones fallidas
 
 Para cada bug o ejecución fallida, identificar de forma explícita:
 
@@ -78,7 +169,7 @@ Para cada bug o ejecución fallida, identificar de forma explícita:
 
 Si hay varios errores encadenados, resolver primero el error más cercano a la causa raíz, no solo el último síntoma.
 
-### 4. Política de cambios
+### 5. Política de cambios
 
 Aplicar siempre cambios mínimos y seguros.
 
@@ -90,10 +181,11 @@ Reglas obligatorias:
 - No sobrescribir lógica compleja si basta con corregir una expresión, conexión o validación.
 - No eliminar validaciones de seguridad para que el workflow “pase”.
 - No ocultar errores críticos con valores por defecto peligrosos.
+- No sustituir un nodo nativo por HTTP Request o Code sin una razón técnica clara.
 
 Antes de cambios peligrosos, explicar brevemente qué se va a tocar y por qué.
 
-### 5. Validar después de modificar
+### 6. Validar después de modificar
 
 Después de cualquier cambio:
 
@@ -104,8 +196,9 @@ Después de cualquier cambio:
 5. Ejecutar o revisar una ejecución de prueba cuando sea seguro.
 6. Confirmar que no aparecen errores nuevos aguas abajo.
 7. Si hay publicación externa, verificar los controles previos antes de permitir salida.
+8. Verificar que las notas visuales del workflow siguen reflejando la arquitectura real.
 
-### 6. Workflows con publicación o impacto externo
+### 7. Workflows con publicación o impacto externo
 
 Para workflows que publican en LinkedIn, envían emails, llaman APIs externas, escriben en memoria o hacen acciones públicas:
 
@@ -116,6 +209,72 @@ Para workflows que publican en LinkedIn, envían emails, llaman APIs externas, e
 - Validar que el texto final sea el texto completo esperado, no una versión resumida accidental.
 - Validar que las variables usadas por el nodo final existen realmente.
 - Validar que los nodos referenciados en expresiones existen y mantienen el nombre esperado.
+
+## Uso de HTTP Request
+
+HTTP Request es válido cuando aporta control real, no como solución por defecto.
+
+Usarlo preferentemente cuando:
+
+- no existe nodo nativo para el servicio o endpoint;
+- el nodo nativo existe pero no soporta la operación concreta;
+- se requiere un endpoint REST/RPC específico;
+- se necesitan headers, parámetros, paginación, upsert o autenticación personalizada;
+- se llama a un MCP propio, proxy interno o servicio corporativo;
+- se está prototipando una integración que luego podría migrarse a nodo nativo.
+
+Antes de usarlo, comprobar:
+
+- método HTTP;
+- URL final;
+- headers;
+- body;
+- autenticación;
+- respuesta esperada;
+- comportamiento ante error;
+- si se debe activar `Never Error` o no;
+- si se debe incluir o no response headers.
+
+## Uso de Code
+
+Code debe usarse para lógica que sea más segura, clara o mantenible en código que en nodos visuales.
+
+Casos razonables:
+
+- chunking de documentos;
+- hashing o deduplicación;
+- normalización compleja;
+- parsing robusto de JSON/CSV/texto;
+- validaciones multi-campo;
+- construcción de payloads complejos;
+- control de errores determinista;
+- limpieza de datos con reglas explícitas.
+
+Buenas prácticas:
+
+- evitar dependencias externas salvo que estén permitidas en la instancia;
+- no asumir que módulos como `crypto` están permitidos;
+- preferir funciones internas sencillas cuando el task runner bloquee módulos;
+- devolver siempre items con estructura consistente;
+- añadir comentarios cortos solo donde aclaren lógica no evidente;
+- no usar Code para operaciones que ya resuelven nodos nativos de forma clara.
+
+## Documentación visual del workflow
+
+Cuando se cree o documente un workflow complejo en n8n, añadir sticky notes en español para que cualquier persona pueda entenderlo al abrirlo.
+
+Cada workflow debería incluir, cuando aplique:
+
+- Objetivo funcional del workflow.
+- Estado actual: borrador, pruebas, producción, inactivo, pendiente de credenciales, etc.
+- Flujo principal resumido por fases.
+- Sistemas conectados: APIs, bases de datos, MCPs, webhooks o servicios externos.
+- Credenciales o variables necesarias, sin exponer valores sensibles.
+- Tablas, endpoints o recursos destino.
+- Reglas de deduplicación, claves únicas o criterios de upsert.
+- Advertencias de seguridad antes de ejecutar acciones externas.
+
+Las notas deben ser operativas, breves y en español. No deben contener tokens, contraseñas, claves API ni secretos reales.
 
 ## Criterios de calidad
 
@@ -129,6 +288,9 @@ Un diagnóstico o cambio en n8n se considera correcto si:
 - Se mantiene trazabilidad de entradas, salidas y nodos afectados.
 - La validación posterior confirma el resultado.
 - La explicación permite a Santi entender qué pasó y cómo evitarlo.
+- La elección de nodos prioriza componentes nativos antes que HTTP Request o Code cuando sea razonable.
+- Si se usa HTTP Request o Code, queda justificado por limitación funcional, seguridad, control o mantenibilidad.
+- El workflow queda documentado visualmente con notas en español cuando su complejidad lo justifique.
 
 ## Formato de salida esperado
 
@@ -158,6 +320,15 @@ Si solo se está proponiendo una arquitectura o creando un workflow nuevo, usar:
 ## Siguiente acción recomendada
 ```
 
+Cuando se proponga la elección de nodos, añadir si aporta valor:
+
+```markdown
+## Selección de nodos
+
+| Necesidad | Nodo recomendado | Motivo | Alternativa si falla |
+|---|---|---|---|
+```
+
 ## Errores comunes a evitar
 
 - Editar antes de diagnosticar.
@@ -170,6 +341,10 @@ Si solo se está proponiendo una arquitectura o creando un workflow nuevo, usar:
 - Confundir el error final con la causa raíz.
 - No revisar nodos aguas abajo después de corregir un nodo anterior.
 - No explicar claramente qué se cambió.
+- Usar HTTP Request por desconocimiento de nodos nativos existentes.
+- Usar Code para transformaciones simples que se pueden resolver con nodos visuales.
+- No consultar la versión real de n8n ni los nodos instalados cuando el diseño depende de ello.
+- Dejar sticky notes en inglés o con información genérica poco útil para el equipo.
 
 ## Plantillas relacionadas
 
@@ -182,3 +357,4 @@ Cuando se creen plantillas para auditoría o documentación de workflows, ubicar
 - `skills/linkedin-ai-news-workflow/SKILL.md` para el workflow principal de noticias de IA hacia LinkedIn.
 - `skills/ai-research/SKILL.md` cuando la tarea incluya investigación o selección de noticias/modelos/herramientas de IA.
 - `skills/prompt-engineering/SKILL.md` cuando la tarea incluya prompts para agentes, AI Writer o nodos LLM.
+- `knowledge/n8n-node-catalog.md` o `knowledge/n8n-node-inventory.json` si existe inventario actualizado de nodos disponibles en la instancia de n8n.
