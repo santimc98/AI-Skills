@@ -41,41 +41,55 @@ Antes de proponer un nodo Code o HTTP Request, comprobar si existe un nodo nativ
 
 Regla práctica:
 
-1. Preferir nodo nativo oficial o community node ya instalado.
-2. Si el nodo nativo existe, usarlo salvo que falte una operación concreta, haya una limitación conocida o el caso requiera control HTTP específico.
-3. Si se propone HTTP Request o Code, explicar brevemente por qué no se usa un nodo nativo.
-4. No asumir que un nodo no existe solo porque no esté en memoria: verificar en el catálogo de nodos, en la instancia de n8n, en el MCP disponible o pedir a Santi una captura/búsqueda si es necesario.
+1. Preferir nodo nativo oficial, AI/LangChain node, core node o community node ya instalado.
+2. Distinguir siempre entre nodos verificados en la instancia y nodos solo documentados.
+3. Si el nodo nativo existe y cubre la operación, usarlo salvo que haya una limitación conocida o el caso requiera control HTTP específico.
+4. Si se propone HTTP Request o Code, explicar brevemente por qué no se usa un nodo nativo.
+5. No asumir que un nodo no existe solo porque no esté en memoria: verificar en los catálogos, en la instancia de n8n, en el MCP disponible o pedir a Santi una captura/búsqueda si es necesario.
+
+Estados de confianza recomendados:
+
+| Estado | Uso |
+|---|---|
+| `verified-used-in-workflow` / `verified-instance` | Confirmado en workflows reales o catálogo real de la instancia. Puede recomendarse con alta confianza. |
+| `verified-docs` / `docs-derived` | Confirmado por documentación n8n. Puede proponerse como candidato, pero debe verificarse en la UI/instancia antes de depender de él. |
+| `unknown-instance` | No confirmado en la instancia. No diseñar alrededor de él sin validación. |
 
 Ejemplos de preferencia:
 
-- Supabase: preferir nodo Supabase o PostgreSQL cuando cubran la operación; usar HTTP Request solo para endpoints REST/RPC concretos, upserts especiales, headers personalizados o funcionalidades no expuestas por el nodo.
-- GitLab/GitHub: preferir nodos nativos cuando la operación esté cubierta; usar HTTP/MCP cuando se necesite un wrapper interno, lectura restringida, endpoints no soportados o lógica de seguridad propia.
-- OpenAI/embeddings/LLM: preferir nodos nativos de OpenAI o AI nodes disponibles; usar HTTP Request si el modelo, endpoint, payload o proveedor no está soportado por el nodo instalado.
-- Transformaciones simples: preferir Edit Fields/Set, IF, Switch, Merge, Split in Batches/Loop, Aggregate, Item Lists o nodos equivalentes antes que Code.
-- Transformaciones complejas: usar Code solo para lógica determinista que no pueda mantenerse razonablemente con nodos visuales.
+- Supabase/RAG: preferir Supabase Vector Store, PGVector Vector Store, Embeddings OpenAI o PostgreSQL cuando cubran la operación; usar HTTP Request solo para REST/RPC, upserts especiales, funciones `match_*`, headers personalizados o funcionalidades no expuestas por el nodo.
+- GitLab/GitHub: preferir nodos nativos cuando estén instalados y la operación esté cubierta; usar HTTP/MCP cuando se necesite un wrapper interno, lectura restringida, endpoints no soportados o lógica de seguridad propia.
+- OpenAI/embeddings/LLM: preferir OpenAI Chat Model, Embeddings OpenAI, AI Agent, LLM Chain, Information Extractor, Text Classifier o Structured Output Parser cuando estén disponibles; usar HTTP Request si el modelo, endpoint, payload o proveedor no está soportado por el nodo instalado.
+- Transformaciones simples: preferir Edit Fields/Set, IF, Switch, Merge, Loop Over Items, Filter, Aggregate, Remove Duplicates, Sort, Date & Time o nodos equivalentes antes que Code.
+- Transformaciones complejas: usar Code solo para lógica determinista que no pueda mantenerse razonablemente con nodos visuales, como chunking avanzado, hashing, deduplicación custom, parsing robusto o payloads dinámicos.
 
 ## Catálogo actualizado de nodos n8n
 
-Para evitar diseñar workflows con información desactualizada, mantener una fuente de conocimiento viva sobre los nodos disponibles en la instancia real de n8n.
+Para evitar diseñar workflows con información desactualizada, mantener una fuente de conocimiento viva sobre los nodos disponibles en la instancia real de n8n y los nodos documentados por n8n.
 
 Prioridad de fuentes, de más fiable a menos fiable:
 
-1. Catálogo de nodos de la propia instancia de n8n y versión instalada.
+1. Catálogo real exportado desde la instancia de n8n y versión instalada.
 2. Herramientas MCP/API de n8n que permitan listar node types, credenciales, operaciones o schemas.
-3. Export o inventario interno generado desde la instancia.
-4. Documentación oficial de n8n correspondiente a la versión instalada.
-5. Memoria o conocimiento general del asistente, solo como apoyo.
+3. Workflows existentes ya validados en la instancia.
+4. `knowledge/n8n-node-inventory.json` con nodos observados y patrones reales.
+5. `knowledge/n8n-node-catalog.md` como catálogo operativo humano.
+6. `knowledge/n8n-node-docs-derived-catalog.md` como catálogo documental de nodos n8n, útil para buscar alternativas node-first pero no suficiente para asumir instalación.
+7. Documentación oficial de n8n correspondiente a la versión instalada.
+8. Memoria o conocimiento general del asistente, solo como apoyo.
 
-Cuando sea posible, crear y mantener en el repositorio un archivo de conocimiento como:
+Regla crítica:
+
+```text
+Un nodo docs-derived no debe tratarse como instalado. Debe verificarse en UI, MCP, workflow existente o catálogo real antes de diseñar un workflow que dependa de él.
+```
+
+Archivos de conocimiento relacionados:
 
 ```text
 knowledge/n8n-node-catalog.md
-```
-
-o, si se prefiere formato estructurado:
-
-```text
 knowledge/n8n-node-inventory.json
+knowledge/n8n-node-docs-derived-catalog.md
 ```
 
 Contenido mínimo recomendado para cada nodo relevante:
@@ -85,6 +99,7 @@ Contenido mínimo recomendado para cada nodo relevante:
 - Nombre técnico/type si se conoce.
 - Paquete: core, official, community o custom.
 - Categoría: base de datos, IA, comunicación, transformación, trigger, devops, etc.
+- Estado: verified-instance, verified-used-in-workflow, verified-docs, docs-derived, unknown-instance.
 - Operaciones principales.
 - Credenciales necesarias.
 - Casos de uso recomendados.
@@ -100,7 +115,8 @@ Actualizar este catálogo cuando:
 - se instale o elimine un community node;
 - se detecte que existe un nodo nativo que antes no se estaba usando;
 - se cree un workflow con integración nueva;
-- un nodo cambie de operaciones, credenciales o comportamiento.
+- un nodo cambie de operaciones, credenciales o comportamiento;
+- se confirme en UI un nodo que antes solo estaba como docs-derived.
 
 ## Procedimiento paso a paso
 
@@ -117,6 +133,7 @@ Verificar, según las herramientas disponibles:
 5. Si el workflow está activo o desactivado.
 6. Versión de n8n, si está disponible.
 7. Nodos instalados o catálogo de nodos, si el MCP/API lo permite.
+8. Si el MCP no expone catálogo global, usar `n8n-node-inventory.json` como evidencia de workflows y `n8n-node-docs-derived-catalog.md` solo como mapa de candidatos.
 
 No modificar nada durante el health check.
 
@@ -132,6 +149,7 @@ Antes de aplicar cambios:
 6. Revisar ejecuciones recientes si el problema viene de una ejecución.
 7. Separar hechos confirmados de hipótesis.
 8. Identificar si un nodo Code o HTTP Request podría sustituirse por un nodo nativo más mantenible.
+9. Si el sustituto solo aparece como docs-derived, pedir confirmación en UI antes de recomendar el cambio como definitivo.
 
 No editar por intuición sin haber localizado la causa probable.
 
@@ -141,15 +159,18 @@ Antes de proponer una arquitectura nueva o modificar un flujo existente:
 
 1. Listar las operaciones necesarias: leer, escribir, buscar, transformar, validar, enviar, esperar, disparar, responder, etc.
 2. Mapear cada operación al nodo nativo más específico disponible.
-3. Reservar HTTP Request para APIs o endpoints no cubiertos por nodos nativos.
-4. Reservar Code para lógica de transformación, validación, hashing, chunking, deduplicación o parsing que no pueda mantenerse bien con nodos visuales.
-5. Documentar la razón si se elige una opción genérica.
+3. Priorizar nodos `verified-used-in-workflow` si cubren la necesidad.
+4. Considerar nodos `verified-docs` como candidatos a verificar en la UI.
+5. Reservar HTTP Request para APIs o endpoints no cubiertos por nodos nativos confirmados.
+6. Reservar Code para lógica de transformación, validación, hashing, chunking, deduplicación o parsing que no pueda mantenerse bien con nodos visuales.
+7. Documentar la razón si se elige una opción genérica.
 
 Plantilla rápida de decisión:
 
 ```text
 Necesidad:
 Nodo nativo considerado:
+Estado del nodo: verified-used-in-workflow / verified-instance / verified-docs / unknown-instance
 Motivo para usarlo / descartarlo:
 Alternativa elegida:
 Riesgo o limitación:
@@ -182,6 +203,7 @@ Reglas obligatorias:
 - No eliminar validaciones de seguridad para que el workflow “pase”.
 - No ocultar errores críticos con valores por defecto peligrosos.
 - No sustituir un nodo nativo por HTTP Request o Code sin una razón técnica clara.
+- No sustituir por un nodo solo `docs-derived` sin comprobar que existe en la instancia.
 
 Antes de cambios peligrosos, explicar brevemente qué se va a tocar y por qué.
 
@@ -257,7 +279,7 @@ Buenas prácticas:
 - preferir funciones internas sencillas cuando el task runner bloquee módulos;
 - devolver siempre items con estructura consistente;
 - añadir comentarios cortos solo donde aclaren lógica no evidente;
-- no usar Code para operaciones que ya resuelven nodos nativos de forma clara.
+- no usar Code para operaciones que ya resuelven nodos nativos confirmados de forma clara.
 
 ## Documentación visual del workflow
 
@@ -290,6 +312,7 @@ Un diagnóstico o cambio en n8n se considera correcto si:
 - La explicación permite a Santi entender qué pasó y cómo evitarlo.
 - La elección de nodos prioriza componentes nativos antes que HTTP Request o Code cuando sea razonable.
 - Si se usa HTTP Request o Code, queda justificado por limitación funcional, seguridad, control o mantenibilidad.
+- Si se propone un nodo documentado pero no verificado en instancia, queda indicado como pendiente de comprobación.
 - El workflow queda documentado visualmente con notas en español cuando su complejidad lo justifique.
 
 ## Formato de salida esperado
@@ -325,8 +348,8 @@ Cuando se proponga la elección de nodos, añadir si aporta valor:
 ```markdown
 ## Selección de nodos
 
-| Necesidad | Nodo recomendado | Motivo | Alternativa si falla |
-|---|---|---|---|
+| Necesidad | Nodo recomendado | Estado del nodo | Motivo | Alternativa si falla |
+|---|---|---|---|---|
 ```
 
 ## Errores comunes a evitar
@@ -343,6 +366,7 @@ Cuando se proponga la elección de nodos, añadir si aporta valor:
 - No explicar claramente qué se cambió.
 - Usar HTTP Request por desconocimiento de nodos nativos existentes.
 - Usar Code para transformaciones simples que se pueden resolver con nodos visuales.
+- Asumir que un nodo `docs-derived` está instalado sin comprobarlo en la instancia.
 - No consultar la versión real de n8n ni los nodos instalados cuando el diseño depende de ello.
 - Dejar sticky notes en inglés o con información genérica poco útil para el equipo.
 
@@ -354,7 +378,9 @@ Cuando se creen plantillas para auditoría o documentación de workflows, ubicar
 
 ## Conocimiento relacionado
 
+- `knowledge/n8n-node-catalog.md` para el catálogo humano de nodos y patrones confirmados/parciales.
+- `knowledge/n8n-node-inventory.json` para inventario estructurado de nodos observados y patrones reales.
+- `knowledge/n8n-node-docs-derived-catalog.md` para nodos documentados por n8n que deben verificarse en instancia antes de usarse.
 - `skills/linkedin-ai-news-workflow/SKILL.md` para el workflow principal de noticias de IA hacia LinkedIn.
 - `skills/ai-research/SKILL.md` cuando la tarea incluya investigación o selección de noticias/modelos/herramientas de IA.
 - `skills/prompt-engineering/SKILL.md` cuando la tarea incluya prompts para agentes, AI Writer o nodos LLM.
-- `knowledge/n8n-node-catalog.md` o `knowledge/n8n-node-inventory.json` si existe inventario actualizado de nodos disponibles en la instancia de n8n.
