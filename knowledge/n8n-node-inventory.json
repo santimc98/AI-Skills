@@ -1,0 +1,366 @@
+{
+  "metadata": {
+    "name": "n8n-node-inventory",
+    "description": "Inventario estructurado de nodos y capacidades de n8n para apoyar la skill n8n-workflow-engineering con criterio node-first.",
+    "status": "initial_manual_catalog",
+    "last_updated": "2026-05-11",
+    "owner": "Operaciones / Business Operations & AI",
+    "related_skill": "skills/n8n-workflow-engineering/SKILL.md",
+    "human_catalog": "knowledge/n8n-node-catalog.md",
+    "verification_policy": {
+      "verified-instance": "Confirmado en la instancia real de n8n usada por Operaciones.",
+      "verified-docs": "Confirmado contra documentación oficial de la versión correspondiente.",
+      "known-general": "Conocimiento general del ecosistema n8n, pendiente de verificar en la instancia real.",
+      "candidate": "Nodo o capacidad plausible que debe buscarse en la instancia antes de diseñar.",
+      "verified-design": "Capacidad validada a nivel de diseño interno o arquitectura, aunque no necesariamente como nodo nativo.",
+      "deprecated-or-unknown": "Nodo dudoso, renombrado, desactualizado o no confirmado."
+    },
+    "source_priority": [
+      "real_n8n_instance_catalog",
+      "n8n_api_or_mcp_node_types",
+      "validated_internal_workflows",
+      "official_n8n_docs_for_installed_version",
+      "knowledge/n8n-node-catalog.md",
+      "assistant_general_knowledge"
+    ],
+    "node_first_rule": "Before using Code or HTTP Request, check whether a native n8n node, AI node, database node, integration node, or visual pattern can solve the need more safely and maintainably."
+  },
+  "nodes": [
+    {
+      "name": "Manual Trigger",
+      "technical_name": null,
+      "category": "trigger",
+      "status": "known-general",
+      "recommended_use": "Manual testing and controlled workflow execution.",
+      "prefer_over": ["Webhook for local/manual tests", "Schedule Trigger during design"],
+      "fallback_when_not_enough": null,
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Schedule Trigger / Cron",
+      "technical_name": null,
+      "category": "trigger",
+      "status": "known-general",
+      "recommended_use": "Recurring executions such as syncs, reports, ingestions and scheduled maintenance.",
+      "prefer_over": ["External cron when workflow-native scheduling is enough"],
+      "fallback_when_not_enough": "Use external scheduler when corporate orchestration, retry policy or deployment constraints require it.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Webhook",
+      "technical_name": null,
+      "category": "trigger",
+      "status": "known-general",
+      "recommended_use": "Receive external calls, callbacks, MCP/tool invocations or internal API requests.",
+      "prefer_over": ["Polling when event-driven execution is possible"],
+      "fallback_when_not_enough": "Use dedicated API service when authentication, rate limiting or complex routing exceeds n8n needs.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Respond to Webhook",
+      "technical_name": null,
+      "category": "http_api",
+      "status": "known-general",
+      "recommended_use": "Return controlled responses from webhook-based workflows.",
+      "prefer_over": ["Implicit webhook response for structured APIs"],
+      "fallback_when_not_enough": "Use a dedicated backend if the response contract is complex or needs advanced auth/session logic.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "IF",
+      "technical_name": null,
+      "category": "flow_control",
+      "status": "known-general",
+      "recommended_use": "Boolean branching based on existence, status, flags or simple comparisons.",
+      "prefer_over": ["Code for simple conditions"],
+      "fallback_when_not_enough": "Use Code when the condition is multi-step, computed across arrays, or not maintainable in expressions.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Switch",
+      "technical_name": null,
+      "category": "flow_control",
+      "status": "known-general",
+      "recommended_use": "Route items by source_type, action, category, status or intent.",
+      "prefer_over": ["Multiple nested IF nodes", "Code for simple routing"],
+      "fallback_when_not_enough": "Use Code when routing rules are dynamically generated or require complex scoring.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Merge",
+      "technical_name": null,
+      "category": "flow_control",
+      "status": "known-general",
+      "recommended_use": "Combine branches, join data, or continue after parallel paths.",
+      "prefer_over": ["Code for simple branch recombination"],
+      "fallback_when_not_enough": "Use Code when merge logic requires custom matching, conflict resolution or nested reconciliation.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Split in Batches / Loop Over Items",
+      "technical_name": null,
+      "category": "flow_control",
+      "status": "known-general",
+      "recommended_use": "Process collections safely by batch to control API limits, memory and retries.",
+      "prefer_over": ["Large all-at-once API calls", "Code loops for simple iteration"],
+      "fallback_when_not_enough": "Use Code or external worker when stateful/retry logic is too complex for visual nodes.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Edit Fields / Set",
+      "technical_name": null,
+      "category": "transform",
+      "status": "known-general",
+      "recommended_use": "Create, select, rename or normalize simple fields in visible form.",
+      "prefer_over": ["Code for simple field mapping"],
+      "fallback_when_not_enough": "Use Code for dynamic schemas, recursive structures, hashing, chunking or advanced validation.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Filter",
+      "technical_name": null,
+      "category": "transform",
+      "status": "known-general",
+      "recommended_use": "Remove unwanted items before expensive or risky steps.",
+      "prefer_over": ["Code for simple filters"],
+      "fallback_when_not_enough": "Use Code when filtering needs tokenization, similarity, multi-array logic or complex predicates.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Aggregate",
+      "technical_name": null,
+      "category": "transform",
+      "status": "known-general",
+      "recommended_use": "Group, summarize or consolidate multiple items into arrays or summaries.",
+      "prefer_over": ["Code for basic aggregation"],
+      "fallback_when_not_enough": "Use Code for complex nested groupings, custom reducers or deterministic chunk grouping.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Code",
+      "technical_name": null,
+      "category": "transform_advanced",
+      "status": "known-general",
+      "recommended_use": "Deterministic JavaScript for chunking, hashing, deduplication, robust parsing, multi-field validation and complex payload construction.",
+      "prefer_over": ["Visual nodes only when the visual solution would be fragile or unreadable"],
+      "fallback_when_not_enough": "Use external service when dependencies, runtime limits, CPU/memory or security constraints exceed n8n Code node.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "HTTP Request",
+      "technical_name": null,
+      "category": "http_api",
+      "status": "known-general",
+      "recommended_use": "Call REST/RPC APIs, MCP endpoints, custom services or unsupported operations.",
+      "prefer_over": ["Native nodes only when they lack the required operation or request control"],
+      "fallback_when_not_enough": "Create a dedicated MCP/API wrapper when authentication, redaction, allowlists or reuse are needed.",
+      "credentials_required": "depends_on_endpoint",
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "PostgreSQL",
+      "technical_name": null,
+      "category": "database",
+      "status": "known-general",
+      "recommended_use": "Query PostgreSQL-compatible databases, including Supabase self-hosted when direct DB access is allowed.",
+      "prefer_over": ["HTTP Request for SQL operations when DB credentials and policies allow direct access"],
+      "fallback_when_not_enough": "Use Supabase REST/RPC via HTTP Request for API-only access, RLS-aware flows, or custom RPC functions.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Supabase",
+      "technical_name": null,
+      "category": "database",
+      "status": "candidate",
+      "recommended_use": "Use Supabase operations when the installed node supports required table insert/update/upsert/query behavior.",
+      "prefer_over": ["HTTP Request for simple supported Supabase table operations"],
+      "fallback_when_not_enough": "Use PostgreSQL node or HTTP Request to REST/RPC endpoints for pgvector, custom match functions, or unsupported upserts.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "OpenAI",
+      "technical_name": null,
+      "category": "ai",
+      "status": "known-general",
+      "recommended_use": "LLM generation, extraction, classification or embeddings if supported by the installed node and model list.",
+      "prefer_over": ["HTTP Request for supported OpenAI operations"],
+      "fallback_when_not_enough": "Use HTTP Request when the node does not support the endpoint, model, response format or payload required.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Embeddings OpenAI",
+      "technical_name": null,
+      "category": "ai_rag",
+      "status": "candidate",
+      "recommended_use": "Generate semantic vectors for RAG pipelines.",
+      "prefer_over": ["HTTP Request for embeddings when the node supports the selected model and dimensions"],
+      "fallback_when_not_enough": "Use HTTP Request to embeddings endpoint if model/dimensions are unsupported by installed node.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Vector Store / Supabase Vector Store",
+      "technical_name": null,
+      "category": "ai_rag",
+      "status": "candidate",
+      "recommended_use": "Store/search embeddings for RAG if available in the installed AI node set.",
+      "prefer_over": ["Manual HTTP/SQL vector logic when native vector store covers the schema and operation"],
+      "fallback_when_not_enough": "Use PostgreSQL SQL or Supabase RPC for custom pgvector functions, metadata filters, or strict schema control.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "GitLab",
+      "technical_name": null,
+      "category": "devops_repository",
+      "status": "candidate",
+      "recommended_use": "Interact with GitLab repositories if installed node supports needed operations.",
+      "prefer_over": ["HTTP Request for simple supported GitLab operations"],
+      "fallback_when_not_enough": "Use GitLab Knowledge MCP/API via HTTP Request when read-only controls, secret redaction, file allowlists or custom repo traversal are required.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "GitLab Knowledge MCP via HTTP Request",
+      "technical_name": "internal_mcp_gitlab_knowledge",
+      "category": "internal_mcp",
+      "status": "verified-design",
+      "recommended_use": "Read controlled GitLab knowledge files with read-only behavior, authentication, secret redaction and stable tool interface.",
+      "prefer_over": ["Raw GitLab node/API when corporate read-only policy and response shaping are required"],
+      "fallback_when_not_enough": "Use native GitLab node only for operations that are safely covered and do not need MCP-level controls.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Spreadsheet File",
+      "technical_name": null,
+      "category": "file_tabular",
+      "status": "known-general",
+      "recommended_use": "Read or write CSV/XLSX-style tabular files in ETL/reporting workflows.",
+      "prefer_over": ["Code for standard CSV/XLSX parsing"],
+      "fallback_when_not_enough": "Use Code/Python/external processing when files are huge, malformed, or require advanced transformations.",
+      "credentials_required": false,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Microsoft Teams",
+      "technical_name": null,
+      "category": "communication",
+      "status": "candidate",
+      "recommended_use": "Send internal notifications, alerts or reporting to Teams channels/chats when approved.",
+      "prefer_over": ["HTTP Request to Graph API for common supported operations"],
+      "fallback_when_not_enough": "Use Microsoft Graph via HTTP Request or official connector when scopes/operations are unsupported.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    },
+    {
+      "name": "Microsoft Outlook",
+      "technical_name": null,
+      "category": "communication",
+      "status": "candidate",
+      "recommended_use": "Send/read corporate email when credentials and scopes are approved.",
+      "prefer_over": ["Generic SMTP/HTTP for supported Microsoft mail operations"],
+      "fallback_when_not_enough": "Use Microsoft Graph via HTTP Request if the native node lacks the operation.",
+      "credentials_required": true,
+      "verified_n8n_version": null,
+      "review_date": "2026-05-11"
+    }
+  ],
+  "patterns": [
+    {
+      "name": "GitLab Knowledge to Supabase pgvector",
+      "status": "design-ready-pending-credentials",
+      "description": "Ingest curated agent knowledge from GitLab Knowledge into Supabase pgvector using n8n.",
+      "recommended_flow": [
+        "Manual Trigger or Schedule Trigger",
+        "GitLab Knowledge MCP/API list files",
+        "GitLab Knowledge MCP/API get file",
+        "Filter or Switch by source_type",
+        "Edit Fields for metadata normalization",
+        "Code for chunking, hashing and deduplication",
+        "OpenAI or Embeddings node for vector generation",
+        "Supabase, PostgreSQL or HTTP Request for upsert",
+        "PostgreSQL or HTTP Request RPC for vector search validation"
+      ],
+      "node_first_decisions": [
+        {
+          "need": "Read GitLab files",
+          "first_choice": "GitLab native node if operation is supported and safe",
+          "fallback": "GitLab Knowledge MCP via HTTP Request"
+        },
+        {
+          "need": "Chunking and hashing",
+          "first_choice": "Code",
+          "fallback": "External processing service if Code node limits are hit"
+        },
+        {
+          "need": "Embeddings",
+          "first_choice": "OpenAI or Embeddings OpenAI node",
+          "fallback": "HTTP Request to embeddings endpoint"
+        },
+        {
+          "need": "Supabase upsert",
+          "first_choice": "Supabase node or PostgreSQL node",
+          "fallback": "HTTP Request to Supabase REST/RPC"
+        }
+      ],
+      "pending_credentials": [
+        "OpenAI API key",
+        "Supabase base URL",
+        "Supabase service role key",
+        "GitLab/MCP token if applicable"
+      ],
+      "security_notes": [
+        "Do not store secrets in workflow notes, Code nodes or Git.",
+        "Start with a small subset before full ingestion.",
+        "Keep source_path, source_ref, content_hash and chunk_index for traceability.",
+        "Prefer idempotent upsert over blind insert."
+      ]
+    }
+  ],
+  "pending_work": [
+    "Obtain real n8n version used by Operations.",
+    "Export/list installed node types from the real instance.",
+    "Confirm whether Supabase, GitLab, OpenAI embeddings and vector store nodes are installed.",
+    "Replace candidate/known-general statuses with verified-instance where possible.",
+    "Add operation-level schemas for critical nodes.",
+    "Add internal workflow examples once validated."
+  ]
+}
